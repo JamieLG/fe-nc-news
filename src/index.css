@@ -5,3 +5,7 @@ img {
 .nav {
   border: 30px;
 }
+
+.comments.list {
+  padding-bottom: 30px;
+}

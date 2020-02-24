@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import loading from "../Images/Loading-Full.gif";
 import Navigation from "./Navigation";
+import { Link } from "@reach/router";
 
 class Topics extends Component {
   state = {
@@ -19,7 +20,8 @@ class Topics extends Component {
           {this.state.allTopicsData.map(topic => {
             return (
               <li>
-                Title: {topic.slug}. Description: {topic.description}
+                Title: <Link to={topic.slug}>{topic.slug}</Link>. Description:{" "}
+                {topic.description}
               </li>
             );
           })}

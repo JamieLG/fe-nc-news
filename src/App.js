@@ -5,7 +5,6 @@ import Disclaimer from "./Components.jsx/Disclaimer";
 import { Router } from "@reach/router";
 import Topics from "./Components.jsx/Topics";
 import Articles from "./Components.jsx/Articles";
-const cors = require("cors");
 
 function App() {
   return (
@@ -14,9 +13,9 @@ function App() {
       <Router>
         <Disclaimer path="/" />
         <Topics path="/topics" />
-        <Articles path="/coding" />
-        <Articles path="/football" />
-        <Articles path="/cooking" />
+        <Articles path="/topics/coding/*" />
+        <Articles path="/topics/football/*" />
+        <Articles path="/topics/cooking/*" />
       </Router>
     </div>
   );

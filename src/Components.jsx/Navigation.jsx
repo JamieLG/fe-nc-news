@@ -6,9 +6,9 @@ function Navigation(props) {
     <div class="nav">
       <Link to="/">HomePage</Link>
       <Link to="/topics">Topics</Link>
-      <Link to="/coding">Coding</Link>
-      <Link to="/football">Football</Link>
-      <Link to="/cooking">Cooking</Link>
+      <Link to="/topics/coding">Coding</Link>
+      <Link to="/topics/football">Football</Link>
+      <Link to="/topics/cooking">Cooking</Link>
     </div>
   );
 }
