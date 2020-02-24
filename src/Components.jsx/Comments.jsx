@@ -5,11 +5,12 @@ import AddCommentForm from "./AddCommentForm";
 
 class Comments extends Component {
   state = {
-    commentData: []
+    commentData: [],
+    username: "grumpy19"
   };
   render() {
     return (
-      <div>
+      <div class="commentsSection">
         <h3>Comments</h3>
         {this.state.commentData.length === 0 && (
           <img src={loading} alt="loading gif"></img>
@@ -20,10 +21,21 @@ class Comments extends Component {
               <li key={comment.comment_id}>
                 Coment: {comment.body} Author: {comment.author}, Votes:{" "}
                 {comment.votes}
+                <br></br>
+                {this.state.username === comment.author && (
+                  <button
+                    onClick={() => {
+                      this.deleteComment(comment.comment_id);
+                    }}
+                  >
+                    Delete Comment
+                  </button>
+                )}
               </li>
             );
           })}
         </ol>
+        <br></br>
         {this.state.id !== undefined && (
           <AddCommentForm
             articleId={this.state.id}
@@ -35,6 +47,10 @@ class Comments extends Component {
     );
   }
   componentDidMount() {
+    this.fetchCommentData();
+  }
+
+  fetchCommentData = () => {
     axios
       .get(
         `https://jamie-backendapp.herokuapp.com/api/articles/${this.props.articleId}/comments`
@@ -45,11 +61,22 @@ class Comments extends Component {
           id: this.props.articleId
         });
       });
-  }
+  };
+
   addCommentToData = data => {
     this.setState(currentState => {
       return { commentData: [...currentState.commentData, data.comment] };
     });
+  };
+
+  deleteComment = commentId => {
+    axios
+      .delete(
+        `https://jamie-backendapp.herokuapp.com/api/comments/${commentId}`
+      )
+      .then(response => {
+        this.fetchCommentData();
+      });
   };
 }
 

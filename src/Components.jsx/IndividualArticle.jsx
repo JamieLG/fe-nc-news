@@ -6,7 +6,8 @@ import Comments from "./Comments";
 
 class IndividualArticle extends Component {
   state = {
-    individualArticleData: []
+    individualArticleData: [],
+    username: "grumpy19"
   };
 
   render() {

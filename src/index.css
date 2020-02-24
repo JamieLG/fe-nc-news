@@ -1,11 +1,53 @@
+* {
+  margin: 0;
+  padding: 10px;
+  font-family: "Courier New", Courier, monospace;
+  background-color: white;
+}
+
 img {
   height: 300px;
 }
 
-.nav {
-  border: 30px;
+div {
+  margin-bottom: 50px;
 }
 
-.comments.list {
-  padding-bottom: 30px;
+.nav {
+  text-align: center;
+  margin: 20px 0 0;
+  padding: 10px 0;
+  font-size: 30px;
+}
+
+/* .list {
+  border-style: solid;
+  padding: 35px;
+} */
+
+.singleArticle {
+  border-top: solid;
+  border-left: solid;
+  border-right: solid;
+  background-color: white;
+}
+
+.header {
+  margin-top: 20px;
+  background-color: navy;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  margin-bottom: 2px;
+  font-size: 40px;
+}
+
+.commentsSection {
+  background-color: white;
+}
+
+.disagree {
+  font-size: 50px;
+  color: red;
 }

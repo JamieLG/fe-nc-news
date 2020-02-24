@@ -24,10 +24,10 @@ class Articles extends Component {
         {this.state.articleData.length === 0 && (
           <img class="img.loading" src={loading} alt="loading gif"></img>
         )}
-        <ol>
+        <ol class="list">
           {this.state.articleData.map(article => {
             return (
-              <li key={article.article_id}>
+              <li key={article.article_id} class="singleArticle">
                 {this.state.sortBy} {article[this.state.sortBy]}
                 <br></br> Title:
                 <Link to={article.article_id.toString()}>{article.title}.</Link>
@@ -38,6 +38,21 @@ class Articles extends Component {
                   }}
                 >
                   {article.showComments ? "Hide Comments" : "Show Comments"}
+                </button>
+                <br></br>
+                <button
+                  onClick={() => {
+                    this.articleVote(1);
+                  }}
+                >
+                  Like
+                </button>
+                <button
+                  onClick={() => {
+                    this.articleVote(-1);
+                  }}
+                >
+                  Dislike
                 </button>
                 {article.showComments === true && (
                   <Comments articleId={article.article_id} />
@@ -77,6 +92,14 @@ class Articles extends Component {
     });
     this.setState({ articleData: newArticleData });
   }
+
+  articleVote = changeInVote => {
+    let topicId = this.props.uri.split("/")[2];
+    axios.patch(
+      `https://jamie-backendapp.herokuapp.com/api/articles/${topicId}`,
+      { inc_votes: changeInVote }
+    );
+  };
 }
 
 export default Articles;

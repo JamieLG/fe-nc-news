@@ -6,7 +6,8 @@ import { Link } from "@reach/router";
 
 class Topics extends Component {
   state = {
-    allTopicsData: []
+    allTopicsData: [],
+    username: "grumpy19"
   };
   render() {
     return (
