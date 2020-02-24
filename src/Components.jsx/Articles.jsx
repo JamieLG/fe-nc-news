@@ -28,28 +28,42 @@ class Articles extends Component {
         <ol class="list">
           {this.state.articleData.map(article => {
             return (
-              <li key={article.article_id} class="singleArticle">
-                {this.state.sortBy} {article[this.state.sortBy]}
-                <br></br> Title:
-                <Link to={article.article_id.toString()}>{article.title}.</Link>
-                Author: {article.author}
-                <button
-                  onClick={() => {
-                    this.toggleComments(article.title);
-                  }}
-                >
-                  {article.showComments ? "Hide Comments" : "Show Comments"}
-                </button>
+              <>
+                <li key={article.article_id} class="singleArticle">
+                  <p>
+                    {this.state.sortBy} {article[this.state.sortBy]}
+                  </p>
+                  <p>
+                    Title:
+                    <Link to={article.article_id.toString()}>
+                      {article.title}.
+                    </Link>
+                    Author: {article.author}
+                  </p>
+                  <div class="buttonContainer">
+                    <button
+                      class="button"
+                      onClick={() => {
+                        this.toggleComments(article.title);
+                      }}
+                    >
+                      {article.showComments ? "Hide Comments" : "Show Comments"}
+                    </button>
+                    <VoteButton
+                      function={this.articleVote}
+                      value={article.article_id}
+                    />
+                    {this.state.sortBy !== "votes" && (
+                      <p class="voteCountDisplay">Votes: {article.votes}</p>
+                    )}
+                  </div>
+
+                  {article.showComments === true && (
+                    <Comments articleId={article.article_id} />
+                  )}
+                </li>
                 <br></br>
-                <VoteButton
-                  function={this.articleVote}
-                  value={article.article_id}
-                />
-                {this.state.sortBy !== "votes" && <p>Votes: {article.votes}</p>}
-                {article.showComments === true && (
-                  <Comments articleId={article.article_id} />
-                )}
-              </li>
+              </>
             );
           })}
         </ol>

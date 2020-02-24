@@ -1,8 +1,23 @@
 * {
-  margin: 0;
-  padding: 10px;
   font-family: "Courier New", Courier, monospace;
-  background-color: white;
+  font-size: 20px;
+}
+
+h1 {
+  font-size: 50px;
+}
+
+h2 {
+  font-size: 40px;
+}
+
+h3 {
+  font-size: 30px;
+}
+
+button {
+  font-size: 30px;
+  font-weight: 300;
 }
 
 img {
@@ -15,15 +30,16 @@ div {
 
 .nav {
   text-align: center;
-  margin: 20px 0 0;
-  padding: 10px 0;
-  font-size: 30px;
+  margin: 20px;
+  padding: 40px;
+  font-size: 20px;
 }
 
 .singleArticle {
   border-top: solid;
   border-left: solid;
   border-right: solid;
+  border-bottom: solid;
   background-color: white;
 }
 
@@ -32,17 +48,67 @@ div {
 }
 
 .header {
-  margin-top: 20px;
+  border: solid;
+  border-color: black;
   background-color: navy;
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
-  align-items: center;
-  margin-bottom: 2px;
   font-size: 40px;
+  color: white;
+}
+
+.headerHeading {
+  margin-left: 50px;
 }
 
 .disagree {
+  text-align: center;
   font-size: 50px;
   color: red;
+}
+
+.buttonContainer {
+  margin-left: 30px;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.disclaimerButtonAgree {
+  width: 200px;
+  background-color: rgb(51, 179, 51);
+}
+
+.disclaimerButtonDisagree {
+  width: 200px;
+  background-color: red;
+}
+
+.voteButtonLike {
+  width: 150px;
+  background-color: rgb(51, 179, 51);
+}
+
+.voteButtonDislike {
+  width: 150px;
+  background-color: red;
+}
+
+.voteCountDisplay {
+  text-align: center;
+  font-size: 30px;
+  margin-left: 20px;
+}
+
+.disclaimerButtonGroup {
+  text-align: center;
+}
+
+.disclaimerImageGroup {
+  text-align: center;
+}
+
+.commentsSection {
+  padding: 30px;
+}
+
+.topicsListItem {
+  margin: 40px;
 }

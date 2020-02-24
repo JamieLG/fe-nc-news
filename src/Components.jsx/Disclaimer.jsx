@@ -9,9 +9,11 @@ class Disclaimer extends Component {
   };
   render() {
     return (
-      <div>
-        <img src={n} alt="nc-news  n homepage logo" />
-        <img src={c} alt="nc-news  c homepage logo" />
+      <div class="disclaimerImageGroup">
+        <div>
+          <img src={n} alt="nc-news  n homepage logo" />
+          <img src={c} alt="nc-news  c homepage logo" />
+        </div>
         <h2>Disclaimer</h2>
         <p>
           If you require any more information or have any questions about our
@@ -23,23 +25,27 @@ class Disclaimer extends Component {
           of this information. Any action you take upon the information you find
           on this website (NC-News), is strictly at your own risk.
         </p>
-        <Link to="/topics">
+        <div class="disclaimerButtonGroup">
+          <Link to="/topics">
+            <button
+              class="disclaimerButtonAgree"
+              onClick={() => {
+                this.changeDisclaimerState("agree");
+              }}
+            >
+              Agree
+            </button>
+          </Link>
+
           <button
+            class="disclaimerButtonDisagree"
             onClick={() => {
-              this.changeDisclaimerState("agree");
+              this.changeDisclaimerState("disagree");
             }}
           >
-            Agree
+            Disagree
           </button>
-        </Link>
-
-        <button
-          onClick={() => {
-            this.changeDisclaimerState("disagree");
-          }}
-        >
-          Disagree
-        </button>
+        </div>
         {this.state.disclaimer === "disagree" && (
           <p class="disagree">YOU MUST AGREE TO ENTER THE SITE</p>
         )}

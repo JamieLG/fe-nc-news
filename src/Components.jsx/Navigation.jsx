@@ -4,11 +4,21 @@ import { Link } from "@reach/router";
 function Navigation(props) {
   return (
     <nav class="nav">
-      <Link to="/">HomePage</Link>
-      <Link to="/topics">Topics</Link>
-      <Link to="/topics/coding">Coding</Link>
-      <Link to="/topics/football">Football</Link>
-      <Link to="/topics/cooking">Cooking</Link>
+      <Link to="/">
+        <button>HomePage</button>
+      </Link>
+      <Link to="/topics">
+        <button>Topics</button>
+      </Link>
+      <Link to="/topics/coding">
+        <button>Coding</button>
+      </Link>
+      <Link to="/topics/football">
+        <button>Football</button>
+      </Link>
+      <Link to="/topics/cooking">
+        <button>Cooking</button>
+      </Link>
     </nav>
   );
 }
