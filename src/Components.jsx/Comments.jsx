@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import loading from "../Images/Loading-Full.gif";
+import AddCommentForm from "./AddCommentForm";
 
 class Comments extends Component {
   state = {
@@ -15,27 +16,41 @@ class Comments extends Component {
         )}
         <ol className="comments.list">
           {this.state.commentData.map(comment => {
-            console.log(comment);
             return (
               <li key={comment.comment_id}>
-                Author: {comment.author}, Votes: {comment.votes}
+                Coment: {comment.body} Author: {comment.author}, Votes:{" "}
+                {comment.votes}
               </li>
             );
           })}
         </ol>
+        {this.state.id !== undefined && (
+          <AddCommentForm
+            articleId={this.state.id}
+            postComment={this.postComment}
+            addCommentToData={this.addCommentToData}
+          />
+        )}
       </div>
     );
   }
   componentDidMount() {
-    console.log(this.props);
     axios
       .get(
         `https://jamie-backendapp.herokuapp.com/api/articles/${this.props.articleId}/comments`
       )
       .then(response => {
-        this.setState({ commentData: response.data.comments });
+        this.setState({
+          commentData: response.data.comments,
+          id: this.props.articleId
+        });
       });
   }
+  addCommentToData = data => {
+    this.setState(currentState => {
+      return { commentData: [...currentState.commentData, data.comment] };
+    });
+  };
 }
 
 export default Comments;

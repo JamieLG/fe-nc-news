@@ -25,7 +25,9 @@ class IndividualArticle extends Component {
           <li>Body: {this.state.individualArticleData.body}</li>
         </ul>
         {this.state.individualArticleData.article_id > 0 && (
-          <Comments articleId={this.state.individualArticleData.article_id} />
+          <>
+            <Comments articleId={this.state.individualArticleData.article_id} />
+          </>
         )}
       </div>
     );
