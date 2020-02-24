@@ -31,6 +31,26 @@ class Comments extends Component {
                     Delete Comment
                   </button>
                 )}
+                <br></br>
+                {this.state.username !== comment.author && (
+                  <>
+                    <button
+                      onClick={() => {
+                        this.commentVote(1, comment.comment_id);
+                      }}
+                    >
+                      Like
+                    </button>
+                    <button
+                      onClick={() => {
+                        this.commentVote(-1, comment.comment_id);
+                      }}
+                    >
+                      Dislike
+                    </button>
+                  </>
+                )}
+                <p class="commentVotes">Votes: {comment.votes}</p>
               </li>
             );
           })}
@@ -76,6 +96,28 @@ class Comments extends Component {
       )
       .then(response => {
         this.fetchCommentData();
+      });
+  };
+
+  commentVote = (changeInVote, commentId) => {
+    axios
+      .patch(
+        `https://jamie-backendapp.herokuapp.com/api/comments/${commentId}`,
+        {
+          inc_votes: changeInVote
+        }
+      )
+      .then(response => {
+        this.setState(currentState => {
+          return {
+            commentData: currentState.commentData.map(comment => {
+              if (comment.comment_id === commentId) {
+                return { ...comment, votes: response.data.comment.votes };
+              }
+              return comment;
+            })
+          };
+        });
       });
   };
 }
