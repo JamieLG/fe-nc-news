@@ -17,7 +17,9 @@ function App() {
         <Articles path="/topics/coding/" />
         <Articles path="/topics/football/" />
         <Articles path="/topics/cooking/" />
-        <IndividualArticle path="/topics/coding/*" />
+        <IndividualArticle path="/topics/coding/:id" />
+        <IndividualArticle path="/topics/football/:id" />
+        <IndividualArticle path="/topics/cooking/:id" />
       </Router>
     </div>
   );

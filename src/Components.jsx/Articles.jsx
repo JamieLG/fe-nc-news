@@ -4,25 +4,32 @@ import Navigation from "./Navigation";
 import loading from "../Images/Loading-Full.gif";
 import Comments from "./Comments";
 import { Link } from "@reach/router";
+import ArticlesSearchDropdown from "./ArticlesSearchDropdown";
 
 class Articles extends Component {
   state = {
-    articleData: []
+    articleData: [],
+    sortBy: "created_at"
   };
   render() {
     return (
       <div class="articles">
         <Navigation />
         <h2>Articles</h2>
+        <ArticlesSearchDropdown
+          getArticleData={this.getArticleData}
+          value={this.state.sortBy}
+        />
+
         {this.state.articleData.length === 0 && (
           <img class="img.loading" src={loading} alt="loading gif"></img>
         )}
         <ol>
           {this.state.articleData.map(article => {
-            console.log(article);
             return (
               <li key={article.article_id}>
-                {console.log(article.article_id)} Title:
+                {this.state.sortBy} {article[this.state.sortBy]}
+                <br></br> Title:
                 <Link to={article.article_id.toString()}>{article.title}.</Link>
                 Author: {article.author}
                 <button
@@ -43,15 +50,19 @@ class Articles extends Component {
     );
   }
   componentDidMount() {
+    this.getArticleData();
+  }
+
+  getArticleData = (sortBy = "created_at") => {
     let topicId = this.props.uri.split("/")[2];
     axios
       .get("https://jamie-backendapp.herokuapp.com/api/articles", {
-        params: { topic: topicId }
+        params: { topic: topicId, sort_by: sortBy }
       })
       .then(response => {
-        this.setState({ articleData: response.data.articles });
+        this.setState({ articleData: response.data.articles, sortBy: sortBy });
       });
-  }
+  };
 
   toggleComments(articleTitle) {
     let newArticleData = this.state.articleData.map(article => {

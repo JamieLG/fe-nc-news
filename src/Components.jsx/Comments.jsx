@@ -9,7 +9,7 @@ class Comments extends Component {
   render() {
     return (
       <div>
-        <h2>Comments</h2>
+        <h3>Comments</h3>
         {this.state.commentData.length === 0 && (
           <img src={loading} alt="loading gif"></img>
         )}
@@ -27,6 +27,7 @@ class Comments extends Component {
     );
   }
   componentDidMount() {
+    console.log(this.props);
     axios
       .get(
         `https://jamie-backendapp.herokuapp.com/api/articles/${this.props.articleId}/comments`
