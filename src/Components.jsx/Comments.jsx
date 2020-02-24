@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import loading from "../Images/Loading-Full.gif";
 import AddCommentForm from "./AddCommentForm";
+import VoteButton from "./VoteButton";
 
 class Comments extends Component {
   state = {
@@ -33,22 +34,10 @@ class Comments extends Component {
                 )}
                 <br></br>
                 {this.state.username !== comment.author && (
-                  <>
-                    <button
-                      onClick={() => {
-                        this.commentVote(1, comment.comment_id);
-                      }}
-                    >
-                      Like
-                    </button>
-                    <button
-                      onClick={() => {
-                        this.commentVote(-1, comment.comment_id);
-                      }}
-                    >
-                      Dislike
-                    </button>
-                  </>
+                  <VoteButton
+                    function={this.commentVote}
+                    value={comment.comment_id}
+                  />
                 )}
                 <p class="commentVotes">Votes: {comment.votes}</p>
               </li>

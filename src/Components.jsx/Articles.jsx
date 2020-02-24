@@ -5,6 +5,7 @@ import loading from "../Images/Loading-Full.gif";
 import Comments from "./Comments";
 import { Link } from "@reach/router";
 import ArticlesSearchDropdown from "./ArticlesSearchDropdown";
+import VoteButton from "./VoteButton";
 
 class Articles extends Component {
   state = {
@@ -40,20 +41,10 @@ class Articles extends Component {
                   {article.showComments ? "Hide Comments" : "Show Comments"}
                 </button>
                 <br></br>
-                <button
-                  onClick={() => {
-                    this.articleVote(1, article.article_id);
-                  }}
-                >
-                  Like
-                </button>
-                <button
-                  onClick={() => {
-                    this.articleVote(-1, article.article_id);
-                  }}
-                >
-                  Dislike
-                </button>
+                <VoteButton
+                  function={this.articleVote}
+                  value={article.article_id}
+                />
                 {this.state.sortBy !== "votes" && <p>Votes: {article.votes}</p>}
                 {article.showComments === true && (
                   <Comments articleId={article.article_id} />

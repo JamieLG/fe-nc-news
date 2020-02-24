@@ -27,6 +27,10 @@ div {
   background-color: white;
 }
 
+.singleArticle:last-of-type {
+  border-bottom: solid;
+}
+
 .header {
   margin-top: 20px;
   background-color: navy;
@@ -36,10 +40,6 @@ div {
   align-items: center;
   margin-bottom: 2px;
   font-size: 40px;
-}
-
-.commentsSection {
-  background-color: white;
 }
 
 .disagree {
