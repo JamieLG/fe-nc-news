@@ -3,7 +3,7 @@ import { Link } from "@reach/router";
 
 function Navigation(props) {
   return (
-    <nav className="nav">
+    <nav class="nav">
       <Link to="/">HomePage</Link>
       <Link to="/topics">Topics</Link>
       <Link to="/topics/coding">Coding</Link>

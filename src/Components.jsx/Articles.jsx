@@ -42,18 +42,19 @@ class Articles extends Component {
                 <br></br>
                 <button
                   onClick={() => {
-                    this.articleVote(1);
+                    this.articleVote(1, article.article_id);
                   }}
                 >
                   Like
                 </button>
                 <button
                   onClick={() => {
-                    this.articleVote(-1);
+                    this.articleVote(-1, article.article_id);
                   }}
                 >
                   Dislike
                 </button>
+                {this.state.sortBy !== "votes" && <p>Votes: {article.votes}</p>}
                 {article.showComments === true && (
                   <Comments articleId={article.article_id} />
                 )}
@@ -93,12 +94,26 @@ class Articles extends Component {
     this.setState({ articleData: newArticleData });
   }
 
-  articleVote = changeInVote => {
-    let topicId = this.props.uri.split("/")[2];
-    axios.patch(
-      `https://jamie-backendapp.herokuapp.com/api/articles/${topicId}`,
-      { inc_votes: changeInVote }
-    );
+  articleVote = (changeInVote, articleId) => {
+    axios
+      .patch(
+        `https://jamie-backendapp.herokuapp.com/api/articles/${articleId}`,
+        {
+          inc_votes: changeInVote
+        }
+      )
+      .then(response => {
+        this.setState(currentState => {
+          return {
+            articleData: currentState.articleData.map(article => {
+              if (article.article_id === articleId) {
+                return { ...article, votes: response.data.article.votes };
+              }
+              return article;
+            })
+          };
+        });
+      });
   };
 }
 
