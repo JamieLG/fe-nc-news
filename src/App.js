@@ -5,6 +5,7 @@ import Disclaimer from "./Components.jsx/Disclaimer";
 import { Router } from "@reach/router";
 import Topics from "./Components.jsx/Topics";
 import Articles from "./Components.jsx/Articles";
+import IndividualArticle from "./Components.jsx/IndividualArticle";
 
 function App() {
   return (
@@ -13,9 +14,10 @@ function App() {
       <Router>
         <Disclaimer path="/" />
         <Topics path="/topics" />
-        <Articles path="/topics/coding/*" />
-        <Articles path="/topics/football/*" />
-        <Articles path="/topics/cooking/*" />
+        <Articles path="/topics/coding/" />
+        <Articles path="/topics/football/" />
+        <Articles path="/topics/cooking/" />
+        <IndividualArticle path="/topics/coding/*" />
       </Router>
     </div>
   );

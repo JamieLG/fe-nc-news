@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import loading from "../Images/Loading-Full.gif";
 
 class Comments extends Component {
   state = {
@@ -9,6 +10,9 @@ class Comments extends Component {
     return (
       <div>
         <h2>Comments</h2>
+        {this.state.commentData.length === 0 && (
+          <img src={loading} alt="loading gif"></img>
+        )}
         <ol className="comments.list">
           {this.state.commentData.map(comment => {
             console.log(comment);

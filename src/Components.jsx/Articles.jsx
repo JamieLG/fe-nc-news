@@ -3,7 +3,7 @@ import axios from "axios";
 import Navigation from "./Navigation";
 import loading from "../Images/Loading-Full.gif";
 import Comments from "./Comments";
-import { Router } from "@reach/router";
+import { Link } from "@reach/router";
 
 class Articles extends Component {
   state = {
@@ -19,15 +19,18 @@ class Articles extends Component {
         )}
         <ol>
           {this.state.articleData.map(article => {
+            console.log(article);
             return (
               <li key={article.article_id}>
-                Title: {article.title}. Author: {article.author}
+                {console.log(article.article_id)} Title:
+                <Link to={article.article_id.toString()}>{article.title}.</Link>
+                Author: {article.author}
                 <button
                   onClick={() => {
                     this.toggleComments(article.title);
                   }}
                 >
-                  Show Comments
+                  {article.showComments ? "Hide Comments" : "Show Comments"}
                 </button>
                 {article.showComments === true && (
                   <Comments articleId={article.article_id} />
