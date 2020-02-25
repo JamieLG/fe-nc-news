@@ -11,7 +11,7 @@ class Comments extends Component {
   };
   render() {
     return (
-      <div class="commentsSection">
+      <div className="commentsSection">
         <h3>Comments</h3>
         {this.state.commentData.length === 0 && (
           <img src={loading} alt="loading gif"></img>
@@ -20,8 +20,7 @@ class Comments extends Component {
           {this.state.commentData.map(comment => {
             return (
               <li key={comment.comment_id}>
-                Coment: {comment.body} Author: {comment.author}, Votes:{" "}
-                {comment.votes}
+                Comment: {comment.body} Author: {comment.author}
                 <br></br>
                 {this.state.username === comment.author && (
                   <button
@@ -39,7 +38,7 @@ class Comments extends Component {
                     value={comment.comment_id}
                   />
                 )}
-                <p class="commentVotes">Votes: {comment.votes}</p>
+                <p className="commentVotes">Votes: {comment.votes}</p>
               </li>
             );
           })}

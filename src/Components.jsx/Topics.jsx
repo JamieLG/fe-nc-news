@@ -20,7 +20,7 @@ class Topics extends Component {
         <ol>
           {this.state.allTopicsData.map(topic => {
             return (
-              <li class="topicsListItem">
+              <li className="topicsListItem" key={topic.slug}>
                 Title:{" "}
                 <Link to={topic.slug}>
                   <button>{topic.slug}</button>

@@ -2,8 +2,8 @@ import React from "react";
 
 function Header(props) {
   return (
-    <div class="header">
-      <h1 class="headerHeading">NC-News</h1>
+    <div className="header">
+      <h1 className="headerHeading">NC-News</h1>
     </div>
   );
 }

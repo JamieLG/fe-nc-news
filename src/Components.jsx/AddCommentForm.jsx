@@ -28,8 +28,6 @@ class AddCommentForm extends Component {
   postComment = event => {
     event.preventDefault();
     const comment = event.target[0].value;
-    console.log("commentttt", comment, this.props.articleId);
-    console.log(this.props);
     axios
       .post(
         `https://jamie-backendapp.herokuapp.com/api/articles/${this.props.articleId}/comments`,

@@ -15,7 +15,7 @@ class IndividualArticle extends Component {
       <div>
         <Navigation />
         {this.state.individualArticleData.length === 0 && (
-          <img class="img.loading" src={loading} alt="loading gif"></img>
+          <img className="img.loading" src={loading} alt="loading gif"></img>
         )}
         <h2>{this.state.individualArticleData.title}</h2>
         <ul>

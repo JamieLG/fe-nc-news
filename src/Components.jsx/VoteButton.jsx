@@ -4,7 +4,7 @@ function VoteButton(props) {
   return (
     <>
       <button
-        class="voteButtonLike"
+        className="voteButtonLike"
         onClick={() => {
           props.function(1, props.value);
         }}
@@ -12,7 +12,7 @@ function VoteButton(props) {
         Like
       </button>
       <button
-        class="voteButtonDislike"
+        className="voteButtonDislike"
         onClick={() => {
           props.function(-1, props.value);
         }}

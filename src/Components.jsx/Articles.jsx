@@ -14,7 +14,7 @@ class Articles extends Component {
   };
   render() {
     return (
-      <div class="articles">
+      <div className="articles">
         <Navigation />
         <h2>Articles</h2>
         <ArticlesSearchDropdown
@@ -23,13 +23,13 @@ class Articles extends Component {
         />
 
         {this.state.articleData.length === 0 && (
-          <img class="img.loading" src={loading} alt="loading gif"></img>
+          <img className="img.loading" src={loading} alt="loading gif"></img>
         )}
-        <ol class="list">
+        <ol className="list">
           {this.state.articleData.map(article => {
             return (
               <>
-                <li key={article.article_id} class="singleArticle">
+                <li key={article.article_id} className="singleArticle">
                   <p>
                     {this.state.sortBy} {article[this.state.sortBy]}
                   </p>
@@ -40,9 +40,9 @@ class Articles extends Component {
                     </Link>
                     Author: {article.author}
                   </p>
-                  <div class="buttonContainer">
+                  <div className="buttonContainer">
                     <button
-                      class="button"
+                      className="button"
                       onClick={() => {
                         this.toggleComments(article.title);
                       }}
@@ -54,7 +54,7 @@ class Articles extends Component {
                       value={article.article_id}
                     />
                     {this.state.sortBy !== "votes" && (
-                      <p class="voteCountDisplay">Votes: {article.votes}</p>
+                      <p className="voteCountDisplay">Votes: {article.votes}</p>
                     )}
                   </div>
 
@@ -94,7 +94,8 @@ class Articles extends Component {
         if (article.showComments === true) {
           return { ...article, showComments: false };
         }
-      } else return article;
+      }
+      return article;
     });
     this.setState({ articleData: newArticleData });
   }
