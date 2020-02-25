@@ -16,7 +16,7 @@ h3 {
 }
 
 button {
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 300;
 }
 
@@ -35,17 +35,17 @@ div {
   font-size: 20px;
 }
 
+/* .navButton:active {
+  background-color: antiquewhite;
+  color: brown;
+} */
 .singleArticle {
-  border-top: solid;
+  /* border-top: solid;
   border-left: solid;
   border-right: solid;
-  border-bottom: solid;
+  border-bottom: solid; */
   background-color: white;
   padding: 10px;
-}
-
-.singleArticle:last-of-type {
-  border-bottom: solid;
 }
 
 .header {
@@ -65,10 +65,9 @@ div {
   font-size: 50px;
   color: red;
 }
+
 .buttonContainer {
-  margin-left: 30px;
-  margin-bottom: 20px;
-  display: flex;
+  /* text-align: center; */
 }
 
 .disclaimerButtonAgree {
@@ -82,17 +81,21 @@ div {
 }
 
 .voteButtonLike {
-  width: 150px;
+  width: 200px;
   background-color: rgb(51, 179, 51);
 }
 
 .voteButtonDislike {
-  width: 150px;
+  width: 200px;
   background-color: red;
 }
 
+.commentsButton {
+  width: 200px;
+}
+
 .voteCountDisplay {
-  text-align: center;
+  text-align: left;
   font-size: 30px;
   margin-left: 20px;
 }
@@ -114,5 +117,9 @@ div {
 }
 
 .articleBody {
+  font-size: 30px;
+}
+
+.singleArticleAuthor {
   font-size: 30px;
 }

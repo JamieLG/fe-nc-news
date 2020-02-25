@@ -2,7 +2,7 @@ import React from "react";
 
 function VoteButton(props) {
   return (
-    <>
+    <div>
       <button
         className="voteButtonLike"
         onClick={() => {
@@ -11,6 +11,7 @@ function VoteButton(props) {
       >
         Like
       </button>
+      <br></br>
       <button
         className="voteButtonDislike"
         onClick={() => {
@@ -19,7 +20,7 @@ function VoteButton(props) {
       >
         Dislike
       </button>
-    </>
+    </div>
   );
 }
 

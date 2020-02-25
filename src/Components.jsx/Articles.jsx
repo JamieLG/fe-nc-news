@@ -33,16 +33,16 @@ class Articles extends Component {
                   <p>
                     {this.state.sortBy} {article[this.state.sortBy]}
                   </p>
-                  <p>
+                  <p class="singleArticleAuthor">
                     Title:
                     <Link to={article.article_id.toString()}>
                       {article.title}.
                     </Link>
-                    <br></br>Author: {article.author}
                   </p>
+                  <br></br> <p>Author: {article.author}</p>
                   <div className="buttonContainer">
                     <button
-                      className="button"
+                      className="commentsButton"
                       onClick={() => {
                         this.toggleComments(article.title);
                       }}
@@ -53,11 +53,11 @@ class Articles extends Component {
                       function={this.articleVote}
                       value={article.article_id}
                     />
+
                     {this.state.sortBy !== "votes" && (
-                      <p className="voteCountDisplay">Votes: {article.votes}</p>
+                      <p>Votes: {article.votes}</p>
                     )}
                   </div>
-
                   {article.showComments === true && (
                     <Comments articleId={article.article_id} />
                   )}
