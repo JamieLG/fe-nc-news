@@ -21,7 +21,8 @@ class Articles extends Component {
       return (
         <div className="articles">
           <Navigation />
-          <h2>Articles</h2>
+          {console.log(this.props.path.split("/")[2])}
+          <h2>Articles - {this.props.path.split("/")[2]}</h2>
           <ArticlesSearchDropdown
             getArticleData={this.getArticleData}
             value={this.state.sortBy}
@@ -30,7 +31,7 @@ class Articles extends Component {
           {this.state.articleData.length === 0 && (
             <img className="img.loading" src={loading} alt="loading gif"></img>
           )}
-          <ol className="list">
+          <ol>
             {this.state.articleData.map(article => {
               return (
                 <>

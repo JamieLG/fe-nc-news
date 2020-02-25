@@ -3,7 +3,7 @@ import axios from "axios";
 
 class AddCommentForm extends Component {
   state = {
-    body: ""
+    inputBody: ""
   };
   render() {
     return (
@@ -12,8 +12,8 @@ class AddCommentForm extends Component {
           Body:
           <input
             type="text"
-            name="body"
-            value={this.state.body}
+            name="inputBody"
+            value={this.state.inputBody}
             onChange={this.handleChange}
             placeholder="Put your comment here."
             required
@@ -39,7 +39,7 @@ class AddCommentForm extends Component {
       )
       .then(({ data }) => {
         this.props.addCommentToData(data);
-        this.setState({ body: "" });
+        this.setState({ inputBody: "" });
       });
   };
 }
