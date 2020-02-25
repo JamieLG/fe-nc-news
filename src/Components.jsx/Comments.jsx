@@ -7,13 +7,13 @@ import Err from "./Err";
 
 class Comments extends Component {
   state = {
-    err: undefined,
+    error: undefined,
     commentData: [],
     username: "grumpy19"
   };
   render() {
-    if (this.state.err !== undefined) {
-      return <Err err={this.state.err} />;
+    if (this.state.error !== undefined) {
+      return <Err error={this.state.error} />;
     } else
       return (
         <div className="commentsSection">
@@ -75,7 +75,7 @@ class Comments extends Component {
         });
       })
       .catch(err => {
-        this.setState({ err });
+        this.setState({ error: err });
       });
   };
 

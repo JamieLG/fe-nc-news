@@ -2,11 +2,13 @@ import React from "react";
 import Navigation from "./Navigation";
 
 function Err(props) {
+  console.log(props.error.response.data);
+
   return (
     <div>
       <Navigation />
-      {props.err ? (
-        <h2 className="errorHeader">{props.err.response.data.msg}</h2>
+      {props.error ? (
+        <h2 className="errorHeader">{props.error.response.data.msg}</h2>
       ) : (
         <h2 className="errorHeader">Not Found! Invalid Link!</h2>
       )}

@@ -7,13 +7,14 @@ import Err from "./Err";
 
 class Topics extends Component {
   state = {
-    err: undefined,
+    error: undefined,
     allTopicsData: [],
     username: "grumpy19"
   };
   render() {
-    if (this.state.err !== undefined) {
-      return <Err err={this.state.err} />;
+    if (this.state.error !== undefined) {
+      console.log("should be loading");
+      return <Err error={this.state.error} />;
     } else
       return (
         <div className="topics">
@@ -50,7 +51,8 @@ class Topics extends Component {
         this.setState({ allTopicsData: response.data.topics });
       })
       .catch(err => {
-        this.setState({ err });
+        console.log("ERRORORORORORORO", err);
+        this.setState({ error: err });
       });
   };
 }

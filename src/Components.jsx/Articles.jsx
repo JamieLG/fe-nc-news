@@ -10,13 +10,13 @@ import Err from "./Err";
 
 class Articles extends Component {
   state = {
-    err: undefined,
+    error: undefined,
     articleData: [],
     sortBy: "created_at"
   };
   render() {
-    if (this.state.err !== undefined) {
-      return <Err err={this.state.err} />;
+    if (this.state.error !== undefined) {
+      return <Err error={this.state.error} />;
     } else
       return (
         <div className="articles">
@@ -84,14 +84,14 @@ class Articles extends Component {
   getArticleData = (sortBy = "created_at") => {
     let topicId = this.props.uri.split("/")[2];
     axios
-      .get("https://jamie-backendapp.herokuapp.com/api/articles", {
+      .get("https://jamie-backendapp.herokuapp.com/api/articles/", {
         params: { topic: topicId, sort_by: sortBy }
       })
       .then(response => {
         this.setState({ articleData: response.data.articles, sortBy: sortBy });
       })
       .catch(err => {
-        this.setState({ err });
+        this.setState({ error: err });
       });
   };
 
