@@ -38,7 +38,7 @@ class Articles extends Component {
                     <Link to={article.article_id.toString()}>
                       {article.title}.
                     </Link>
-                    Author: {article.author}
+                    <br></br>Author: {article.author}
                   </p>
                   <div className="buttonContainer">
                     <button

@@ -41,6 +41,7 @@ div {
   border-right: solid;
   border-bottom: solid;
   background-color: white;
+  padding: 10px;
 }
 
 .singleArticle:last-of-type {
@@ -110,4 +111,8 @@ div {
 
 .topicsListItem {
   margin: 40px;
+}
+
+.articleBody {
+  font-size: 30px;
 }

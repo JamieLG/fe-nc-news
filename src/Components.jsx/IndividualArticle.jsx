@@ -23,7 +23,8 @@ class IndividualArticle extends Component {
           <li>Topic: {this.state.individualArticleData.topic}</li>
           <li>Author: {this.state.individualArticleData.author}</li>
           <li>Date Created: {this.state.individualArticleData.created_at}</li>
-          <li>Body: {this.state.individualArticleData.body}</li>
+          <br></br>
+          <p className="articleBody">{this.state.individualArticleData.body}</p>
         </ul>
         {this.state.individualArticleData.article_id > 0 && (
           <>
