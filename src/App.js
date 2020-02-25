@@ -11,7 +11,7 @@ import "typeface-roboto";
 
 function App() {
   return (
-    <div className="app">
+    <div>
       <Header />
       <Router>
         <Disclaimer path="/" />

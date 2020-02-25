@@ -8,6 +8,7 @@ import Err from "./Err";
 class Comments extends Component {
   state = {
     error: undefined,
+    commentsVotedOn: {},
     commentData: [],
     username: "grumpy19"
   };
@@ -37,13 +38,18 @@ class Comments extends Component {
                     </button>
                   )}
                   <br></br>
-                  {this.state.username !== comment.author && (
-                    <VoteButton
-                      function={this.commentVote}
-                      value={comment.comment_id}
-                    />
+                  <p className="commentVotes">Votes: {comment.votes}</p>{" "}
+                  {this.state.commentsVotedOn[comment.comment_id] === true && (
+                    <p className="alreadyVotedText">You have already voted!</p>
                   )}
-                  <p className="commentVotes">Votes: {comment.votes}</p>
+                  {this.state.commentsVotedOn[comment.comment_id] !== undefined
+                    ? console.log("test")
+                    : this.state.username !== comment.author && (
+                        <VoteButton
+                          function={this.commentVote}
+                          value={comment.comment_id}
+                        />
+                      )}
                 </li>
               );
             })}
@@ -106,6 +112,10 @@ class Comments extends Component {
       .then(response => {
         this.setState(currentState => {
           return {
+            commentsVotedOn: {
+              ...currentState.commentsVotedOn,
+              [commentId]: true
+            },
             commentData: currentState.commentData.map(comment => {
               if (comment.comment_id === commentId) {
                 return { ...comment, votes: response.data.comment.votes };

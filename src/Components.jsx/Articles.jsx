@@ -11,6 +11,7 @@ import Err from "./Err";
 class Articles extends Component {
   state = {
     error: undefined,
+    articlesVotedOn: {},
     articleData: [],
     sortBy: "created_at"
   };
@@ -21,7 +22,6 @@ class Articles extends Component {
       return (
         <div className="articles">
           <Navigation />
-          {console.log(this.props.path.split("/")[2])}
           <h2>Articles - {this.props.path.split("/")[2]}</h2>
           <ArticlesSearchDropdown
             getArticleData={this.getArticleData}
@@ -57,10 +57,18 @@ class Articles extends Component {
                           ? "Hide Comments"
                           : "Show Comments"}
                       </button>
-                      <VoteButton
-                        function={this.articleVote}
-                        value={article.article_id}
-                      />
+
+                      {this.state.articlesVotedOn[article.article_id] ===
+                      true ? (
+                        <p className="alreadyVotedText">
+                          You have already voted!
+                        </p>
+                      ) : (
+                        <VoteButton
+                          function={this.articleVote}
+                          value={article.article_id}
+                        />
+                      )}
 
                       {this.state.sortBy !== "votes" && (
                         <p>Votes: {article.votes}</p>
@@ -121,7 +129,12 @@ class Articles extends Component {
       )
       .then(response => {
         this.setState(currentState => {
+          console.log("articleid", articleId);
           return {
+            articlesVotedOn: {
+              ...currentState.articlesVotedOn,
+              [articleId]: true
+            },
             articleData: currentState.articleData.map(article => {
               if (article.article_id === articleId) {
                 return { ...article, votes: response.data.article.votes };
