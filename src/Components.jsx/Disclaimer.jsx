@@ -10,9 +10,9 @@ class Disclaimer extends Component {
   render() {
     return (
       <div className="disclaimerImageGroup">
-        <div>
-          <img src={n} alt="nc-news  n homepage logo" />
-          <img src={c} alt="nc-news  c homepage logo" />
+        <div className="nc-news-logo">
+          <img src={n} alt="nc-news n homepage logo" />
+          <img src={c} alt="nc-news c homepage logo" />
         </div>
         <h2>Disclaimer</h2>
         <p>

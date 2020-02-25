@@ -25,7 +25,7 @@ img {
 }
 
 div {
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 }
 
 .nav {
@@ -128,4 +128,14 @@ div {
 
 .singleArticleAuthor {
   font-size: 30px;
+}
+
+.divider {
+  width: 5px;
+  height: auto;
+  display: inline-block;
+}
+
+.nc-news-logo {
+  margin-top: 50px;
 }

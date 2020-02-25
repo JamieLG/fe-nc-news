@@ -1,24 +1,38 @@
 import React from "react";
 import { Link } from "@reach/router";
+import Button from "@material-ui/core/Button";
 
 function Navigation(props) {
   return (
     <nav className="nav">
-      {console.log(props)}
       <Link to="/">
-        <button className="navButton">HomePage</button>
+        <Button variant="contained" color="primary">
+          HomePage
+        </Button>
       </Link>
+      <div className="divider"></div>
       <Link to="/topics">
-        <button className="navButton">Topics</button>
+        <Button variant="contained" color="primary">
+          Topics
+        </Button>
       </Link>
+      <div className="divider"></div>
       <Link to="/topics/coding">
-        <button className="navButton">Coding</button>
+        <Button variant="contained" color="primary">
+          Coding
+        </Button>
       </Link>
+      <div className="divider"></div>
       <Link to="/topics/football">
-        <button className="navButton">Football</button>
+        <Button variant="contained" color="primary">
+          Football
+        </Button>
       </Link>
+      <div className="divider"></div>
       <Link to="/topics/cooking">
-        <button className="navButton">Cooking</button>
+        <Button variant="contained" color="primary">
+          Cooking
+        </Button>
       </Link>
     </nav>
   );
