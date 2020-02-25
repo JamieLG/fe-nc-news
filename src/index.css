@@ -56,6 +56,12 @@ div {
   color: white;
 }
 
+.errorHeader {
+  font-size: 50px;
+  color: red;
+  text-align: center;
+}
+
 .headerHeading {
   margin-left: 50px;
 }

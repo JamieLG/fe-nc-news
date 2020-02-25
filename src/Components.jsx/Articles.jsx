@@ -6,69 +6,76 @@ import Comments from "./Comments";
 import { Link } from "@reach/router";
 import ArticlesSearchDropdown from "./ArticlesSearchDropdown";
 import VoteButton from "./VoteButton";
+import Err from "./Err";
 
 class Articles extends Component {
   state = {
+    err: undefined,
     articleData: [],
     sortBy: "created_at"
   };
   render() {
-    return (
-      <div className="articles">
-        <Navigation />
-        <h2>Articles</h2>
-        <ArticlesSearchDropdown
-          getArticleData={this.getArticleData}
-          value={this.state.sortBy}
-        />
+    if (this.state.err !== undefined) {
+      return <Err err={this.state.err} />;
+    } else
+      return (
+        <div className="articles">
+          <Navigation />
+          <h2>Articles</h2>
+          <ArticlesSearchDropdown
+            getArticleData={this.getArticleData}
+            value={this.state.sortBy}
+          />
 
-        {this.state.articleData.length === 0 && (
-          <img className="img.loading" src={loading} alt="loading gif"></img>
-        )}
-        <ol className="list">
-          {this.state.articleData.map(article => {
-            return (
-              <>
-                <li key={article.article_id} className="singleArticle">
-                  <p>
-                    {this.state.sortBy} {article[this.state.sortBy]}
-                  </p>
-                  <p class="singleArticleAuthor">
-                    Title:
-                    <Link to={article.article_id.toString()}>
-                      {article.title}.
-                    </Link>
-                  </p>
-                  <br></br> <p>Author: {article.author}</p>
-                  <div className="buttonContainer">
-                    <button
-                      className="commentsButton"
-                      onClick={() => {
-                        this.toggleComments(article.title);
-                      }}
-                    >
-                      {article.showComments ? "Hide Comments" : "Show Comments"}
-                    </button>
-                    <VoteButton
-                      function={this.articleVote}
-                      value={article.article_id}
-                    />
+          {this.state.articleData.length === 0 && (
+            <img className="img.loading" src={loading} alt="loading gif"></img>
+          )}
+          <ol className="list">
+            {this.state.articleData.map(article => {
+              return (
+                <>
+                  <li key={article.article_id} className="singleArticle">
+                    <p>
+                      {this.state.sortBy} {article[this.state.sortBy]}
+                    </p>
+                    <p className="singleArticleAuthor">
+                      Title:
+                      <Link to={article.article_id.toString()}>
+                        {article.title}.
+                      </Link>
+                    </p>
+                    <br></br> <p>Author: {article.author}</p>
+                    <div className="buttonContainer">
+                      <button
+                        className="commentsButton"
+                        onClick={() => {
+                          this.toggleComments(article.title);
+                        }}
+                      >
+                        {article.showComments
+                          ? "Hide Comments"
+                          : "Show Comments"}
+                      </button>
+                      <VoteButton
+                        function={this.articleVote}
+                        value={article.article_id}
+                      />
 
-                    {this.state.sortBy !== "votes" && (
-                      <p>Votes: {article.votes}</p>
+                      {this.state.sortBy !== "votes" && (
+                        <p>Votes: {article.votes}</p>
+                      )}
+                    </div>
+                    {article.showComments === true && (
+                      <Comments articleId={article.article_id} />
                     )}
-                  </div>
-                  {article.showComments === true && (
-                    <Comments articleId={article.article_id} />
-                  )}
-                </li>
-                <br></br>
-              </>
-            );
-          })}
-        </ol>
-      </div>
-    );
+                  </li>
+                  <br></br>
+                </>
+              );
+            })}
+          </ol>
+        </div>
+      );
   }
   componentDidMount() {
     this.getArticleData();
@@ -82,6 +89,9 @@ class Articles extends Component {
       })
       .then(response => {
         this.setState({ articleData: response.data.articles, sortBy: sortBy });
+      })
+      .catch(err => {
+        this.setState({ err });
       });
   };
 

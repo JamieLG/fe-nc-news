@@ -3,56 +3,61 @@ import axios from "axios";
 import loading from "../Images/Loading-Full.gif";
 import AddCommentForm from "./AddCommentForm";
 import VoteButton from "./VoteButton";
+import Err from "./Err";
 
 class Comments extends Component {
   state = {
+    err: undefined,
     commentData: [],
     username: "grumpy19"
   };
   render() {
-    return (
-      <div className="commentsSection">
-        <h3>Comments</h3>
-        {this.state.commentData.length === 0 && (
-          <img src={loading} alt="loading gif"></img>
-        )}
-        <ol className="comments.list">
-          {this.state.commentData.map(comment => {
-            return (
-              <li key={comment.comment_id}>
-                Comment: {comment.body} Author: {comment.author}
-                <br></br>
-                {this.state.username === comment.author && (
-                  <button
-                    onClick={() => {
-                      this.deleteComment(comment.comment_id);
-                    }}
-                  >
-                    Delete Comment
-                  </button>
-                )}
-                <br></br>
-                {this.state.username !== comment.author && (
-                  <VoteButton
-                    function={this.commentVote}
-                    value={comment.comment_id}
-                  />
-                )}
-                <p className="commentVotes">Votes: {comment.votes}</p>
-              </li>
-            );
-          })}
-        </ol>
-        <br></br>
-        {this.state.id !== undefined && (
-          <AddCommentForm
-            articleId={this.state.id}
-            postComment={this.postComment}
-            addCommentToData={this.addCommentToData}
-          />
-        )}
-      </div>
-    );
+    if (this.state.err !== undefined) {
+      return <Err err={this.state.err} />;
+    } else
+      return (
+        <div className="commentsSection">
+          <h3>Comments</h3>
+          {this.state.commentData.length === 0 && (
+            <img src={loading} alt="loading gif"></img>
+          )}
+          <ol className="comments.list">
+            {this.state.commentData.map(comment => {
+              return (
+                <li key={comment.comment_id}>
+                  Comment: {comment.body} Author: {comment.author}
+                  <br></br>
+                  {this.state.username === comment.author && (
+                    <button
+                      onClick={() => {
+                        this.deleteComment(comment.comment_id);
+                      }}
+                    >
+                      Delete Comment
+                    </button>
+                  )}
+                  <br></br>
+                  {this.state.username !== comment.author && (
+                    <VoteButton
+                      function={this.commentVote}
+                      value={comment.comment_id}
+                    />
+                  )}
+                  <p className="commentVotes">Votes: {comment.votes}</p>
+                </li>
+              );
+            })}
+          </ol>
+          <br></br>
+          {this.state.id !== undefined && (
+            <AddCommentForm
+              articleId={this.state.id}
+              postComment={this.postComment}
+              addCommentToData={this.addCommentToData}
+            />
+          )}
+        </div>
+      );
   }
   componentDidMount() {
     this.fetchCommentData();
@@ -68,6 +73,9 @@ class Comments extends Component {
           commentData: response.data.comments,
           id: this.props.articleId
         });
+      })
+      .catch(err => {
+        this.setState({ err });
       });
   };
 

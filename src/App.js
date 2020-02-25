@@ -6,7 +6,7 @@ import { Router } from "@reach/router";
 import Topics from "./Components.jsx/Topics";
 import Articles from "./Components.jsx/Articles";
 import IndividualArticle from "./Components.jsx/IndividualArticle";
-import NotFound from "./Components.jsx/NotFound";
+import Err from "./Components.jsx/Err";
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
         <Articles path="/topics/football" />
         <Articles path="/topics/cooking" />
         <IndividualArticle path="/topics/:topic/:id" />
-        <NotFound path="/*" />
+        <Err path="/*" />
       </Router>
     </div>
   );
