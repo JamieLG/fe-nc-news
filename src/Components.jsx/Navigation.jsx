@@ -16,27 +16,12 @@ function Navigation(props) {
           Topics
         </Button>
       </Link>
-
-      <div className="navLinkTypeSplit">
-        <div className="divider"></div>
-        <Link to="/topics/coding">
-          <Button variant="contained" color="primary">
-            Coding
-          </Button>
-        </Link>
-        <div className="divider"></div>
-        <Link to="/topics/football">
-          <Button variant="contained" color="primary">
-            Football
-          </Button>
-        </Link>
-        <div className="divider"></div>
-        <Link to="/topics/cooking">
-          <Button variant="contained" color="primary">
-            Cooking
-          </Button>
-        </Link>
-      </div>
+      <div className="divider"></div>
+      <Link to="/stats">
+        <Button variant="contained" color="primary">
+          Articles/Stats
+        </Button>
+      </Link>
     </nav>
   );
 }

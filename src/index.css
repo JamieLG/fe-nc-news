@@ -1,6 +1,10 @@
+/* General */
+
 * {
   font-family: "Courier New", Courier, monospace;
   font-size: 20px;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 
 h1 {
@@ -28,25 +32,20 @@ div {
   margin-bottom: 10px;
 }
 
+/*           */
+/* className */
+/*           */
+
+/* Nav */
+
 .nav {
   text-align: center;
   margin: 20px;
-  padding: 40px;
+  padding: 20px;
   font-size: 20px;
 }
 
-/* .navButton:active {
-  background-color: antiquewhite;
-  color: brown;
-} */
-.singleArticle {
-  /* border-top: solid;
-  border-left: solid;
-  border-right: solid;
-  border-bottom: solid; */
-  background-color: white;
-  padding: 10px;
-}
+/* Header */
 
 .header {
   border: solid;
@@ -56,15 +55,25 @@ div {
   color: white;
 }
 
+.headerHeading {
+  margin-left: 50px;
+}
+
+/* Article */
+
+.singleArticle {
+  background-color: white;
+  padding: 10px;
+}
+/* Err */
+
 .errorHeader {
   font-size: 50px;
   color: red;
   text-align: center;
 }
 
-.headerHeading {
-  margin-left: 50px;
-}
+/* Disclaimer */
 
 .disagree {
   text-align: center;
@@ -82,6 +91,16 @@ div {
   background-color: red;
 }
 
+.disclaimerButtonGroup {
+  text-align: center;
+}
+
+.disclaimerImageGroup {
+  text-align: center;
+}
+
+/* VoteButton */
+
 .voteButtonLike {
   width: 200px;
   background-color: rgb(51, 179, 51);
@@ -92,6 +111,7 @@ div {
   background-color: red;
 }
 
+/* Comments */
 .commentsButton {
   width: 200px;
 }
@@ -100,14 +120,6 @@ div {
   text-align: left;
   font-size: 30px;
   margin-left: 20px;
-}
-
-.disclaimerButtonGroup {
-  text-align: center;
-}
-
-.disclaimerImageGroup {
-  text-align: center;
 }
 
 .commentsSection {
@@ -142,4 +154,8 @@ div {
 
 .alreadyVotedText {
   color: red;
+}
+
+.commentListItem {
+  margin-top: 50px;
 }

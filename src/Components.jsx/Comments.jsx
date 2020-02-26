@@ -25,7 +25,7 @@ class Comments extends Component {
           <ol className="comments.list">
             {this.state.commentData.map(comment => {
               return (
-                <li key={comment.comment_id}>
+                <li key={comment.comment_id} className="commentListItem">
                   Comment: {comment.body} Author: {comment.author}
                   <br></br>
                   {this.state.username === comment.author && (

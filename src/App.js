@@ -8,6 +8,7 @@ import Articles from "./Components.jsx/Articles";
 import IndividualArticle from "./Components.jsx/IndividualArticle";
 import Err from "./Components.jsx/Err";
 import "typeface-roboto";
+import Stats from "./Components.jsx/Stats";
 
 function App() {
   return (
@@ -16,10 +17,9 @@ function App() {
       <Router>
         <Disclaimer path="/" />
         <Topics path="/topics" />
-        <Articles path="/topics/coding" />
-        <Articles path="/topics/football" />
-        <Articles path="/topics/cooking" />
+        <Articles path="/topics/:topic" />
         <IndividualArticle path="/topics/:topic/:id" />
+        <Stats path="/stats" />
         <Err path="/*" />
       </Router>
     </div>
