@@ -10,7 +10,8 @@ class Stats extends Component {
   state = {
     error: undefined,
     articleData: [],
-    sortBy: "created_at",
+    sort: "created_at",
+    order: "desc",
     topicCount: 0
   };
   render() {
@@ -54,8 +55,9 @@ class Stats extends Component {
           )}
           <h2>All Articles</h2>
           <ArticlesSearchDropdown
-            getArticleData={this.getArticleData}
-            value={this.state.sortBy}
+            updateSearchParams={this.updateSearchParams}
+            valueSort={this.state.sort}
+            valueOrder={this.state.order}
           />
 
           {this.state.articleData.length === 0 && (
@@ -68,10 +70,16 @@ class Stats extends Component {
                 <>
                   <li key={article.article_id} className="singleArticle">
                     <p>
-                      {this.state.sortBy} {article[this.state.sortBy]}
+                      {this.state.sort} {article[this.state.sort]}
                     </p>
                     <p className="singleArticleAuthor">
-                      Title: {article.title}.
+                      Title:{" "}
+                      <Link
+                        to={`/topics/${article.topic}/${article.article_id}`}
+                      >
+                        {" "}
+                        {article.title}.
+                      </Link>
                     </p>
                     <br></br>
                     <p>Author: {article.author}</p>
@@ -87,10 +95,10 @@ class Stats extends Component {
     this.getArticleData();
   }
 
-  getArticleData = (sortBy = "created_at") => {
+  getArticleData = () => {
     axios
       .get("https://jamie-backendapp.herokuapp.com/api/articles/", {
-        params: { sort_by: sortBy }
+        params: { sort_by: this.state.sort, order: this.state.order }
       })
       .then(response => {
         let articleDataObj = {
@@ -120,7 +128,6 @@ class Stats extends Component {
         });
         this.setState({
           articleData: response.data.articles,
-          sortBy: sortBy,
           topicCount: articleDataObj.total,
           votesHighest: articleDataObj.votesHighest.votes,
           titleHighest: articleDataObj.votesHighest.title,
@@ -138,6 +145,18 @@ class Stats extends Component {
         this.setState({ error: err });
       });
   };
+  updateSearchParams = (paramType, paramValue) => {
+    console.log("here", paramType, paramValue);
+    this.setState({ [paramType]: paramValue });
+  };
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.sort !== this.state.sort) {
+      this.getArticleData();
+    }
+    if (prevState.order !== this.state.order) {
+      this.getArticleData();
+    }
+  }
 }
 
 export default Stats;

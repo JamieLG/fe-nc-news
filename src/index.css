@@ -26,6 +26,7 @@ button {
 }
 
 img {
+  margin-left: 20px;
   height: 300px;
   text-align: center;
 }
@@ -125,8 +126,14 @@ div {
 /* Articles search dropdown */
 
 .searchDropdown {
+  display: flex;
+  flex-direction: row;
   background-color: rgb(138, 138, 170);
   margin-left: 15px;
+}
+.searchDropdownForm {
+  margin: 0px;
+  padding: 0px;
 }
 
 .alreadyVotedText {

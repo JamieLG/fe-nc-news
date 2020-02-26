@@ -13,7 +13,8 @@ class Articles extends Component {
     error: undefined,
     articlesVotedOn: {},
     articleData: [],
-    sortBy: "created_at"
+    sort: "created_at",
+    order: "desc"
   };
   render() {
     if (this.state.error !== undefined) {
@@ -21,13 +22,13 @@ class Articles extends Component {
     } else
       return (
         <div className="articles">
-          {console.log(this.props, "propssss")}
+          {console.log(this.state.sort, this.state.order)}
           <Navigation />
-          {console.log(this.props.path)}
           <h2>Articles - {this.props.topic} </h2>
           <ArticlesSearchDropdown
-            getArticleData={this.getArticleData}
-            value={this.state.sortBy}
+            updateSearchParams={this.updateSearchParams}
+            valueSort={this.state.sort}
+            valueOrder={this.state.order}
           />
 
           {this.state.articleData.length === 0 && (
@@ -39,7 +40,7 @@ class Articles extends Component {
                 <>
                   <li key={article.article_id} className="singleArticle">
                     <p>
-                      {this.state.sortBy} {article[this.state.sortBy]}
+                      {this.state.sort} {article[this.state.sort]}
                     </p>
                     <p className="singleArticleAuthor">
                       Title:
@@ -92,14 +93,23 @@ class Articles extends Component {
     this.getArticleData();
   }
 
-  getArticleData = (sortBy = "created_at") => {
+  updateSearchParams = (paramType, paramValue) => {
+    console.log("here", paramType, paramValue);
+    this.setState({ [paramType]: paramValue });
+  };
+
+  getArticleData = () => {
     let topicId = this.props.uri.split("/")[2];
     axios
-      .get("https://jamie-backendapp.herokuapp.com/api/articles/", {
-        params: { topic: topicId, sort_by: sortBy }
+      .get("https://jamie-backendapp.herokuapp.com/api/articles", {
+        params: {
+          topic: topicId,
+          sort_by: this.state.sort,
+          order: this.state.order
+        }
       })
       .then(response => {
-        this.setState({ articleData: response.data.articles, sortBy: sortBy });
+        this.setState({ articleData: response.data.articles });
       })
       .catch(err => {
         this.setState({ error: err });
@@ -147,6 +157,17 @@ class Articles extends Component {
         });
       });
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.sort !== this.state.sort) {
+      this.getArticleData();
+    }
+    if (prevState.order !== this.state.order) {
+      this.getArticleData();
+    }
+
+    console.log(prevState);
+  }
 }
 
 export default Articles;
