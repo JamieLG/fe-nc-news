@@ -24,7 +24,7 @@ class Articles extends Component {
           {console.log(this.props, "propssss")}
           <Navigation />
           {console.log(this.props.path)}
-          <h2>Articles - {this.props.topic}</h2>
+          <h2>Articles - {this.props.topic} </h2>
           <ArticlesSearchDropdown
             getArticleData={this.getArticleData}
             value={this.state.sortBy}
@@ -47,7 +47,7 @@ class Articles extends Component {
                         {article.title}.
                       </Link>
                     </p>
-                    <br></br> <p>Author: {article.author}</p>
+                    <p>Author: {article.author}</p>
                     <div className="buttonContainer">
                       <button
                         className="commentsButton"

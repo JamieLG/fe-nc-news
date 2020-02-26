@@ -53,6 +53,12 @@ div {
   margin-top: 10px;
 }
 
+.divider {
+  width: 5px;
+  height: auto;
+  display: inline-block;
+}
+
 /* Header */
 
 .header {
@@ -72,6 +78,14 @@ div {
 .singleArticle {
   background-color: white;
   padding: 10px;
+}
+
+.articleBody {
+  font-size: 30px;
+}
+
+.singleArticleAuthor {
+  font-size: 30px;
 }
 /* Err */
 
@@ -120,37 +134,21 @@ div {
 }
 
 /* Comments */
+
 .commentsButton {
   width: 200px;
   margin-left: 4px;
 }
 
-/* .voteCountDisplay {
-  text-align: left;
-  font-size: 30px;
-  margin-left: 20px;
-} */
-
 .commentsSection {
   padding: 30px;
 }
 
+/* Topics */
+
 .topicsListItem {
-  margin: 40px;
-}
-
-.articleBody {
-  font-size: 30px;
-}
-
-.singleArticleAuthor {
-  font-size: 30px;
-}
-
-.divider {
-  width: 5px;
-  height: auto;
-  display: inline-block;
+  margin-bottom: 20px;
+  margin-left: 20px;
 }
 
 .nc-news-logo {
