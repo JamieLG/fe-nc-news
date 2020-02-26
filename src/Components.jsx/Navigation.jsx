@@ -24,7 +24,9 @@ function Navigation(props) {
           </Button>
         </Link>
       </nav>
-      <p className="username">Username: grumpy19</p>
+      <div>
+        <p className="username">Username: grumpy19</p>
+      </div>
     </div>
   );
 }
