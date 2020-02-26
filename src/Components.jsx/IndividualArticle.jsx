@@ -12,13 +12,13 @@ class IndividualArticle extends Component {
 
   render() {
     return (
-      <div>
+      <div className="articles">
         <Navigation />
         {this.state.individualArticleData.length === 0 && (
           <img className="img.loading" src={loading} alt="loading gif"></img>
         )}
         <h2>{this.state.individualArticleData.title}</h2>
-        <ul>
+        <ul className="individualArticleList">
           <li>Title: {this.state.individualArticleData.title}</li>
           <li>Topic: {this.state.individualArticleData.topic}</li>
           <li>Author: {this.state.individualArticleData.author}</li>
@@ -27,9 +27,9 @@ class IndividualArticle extends Component {
           <p className="articleBody">{this.state.individualArticleData.body}</p>
         </ul>
         {this.state.individualArticleData.article_id > 0 && (
-          <>
+          <div className="individualArticleComments">
             <Comments articleId={this.state.individualArticleData.article_id} />
-          </>
+          </div>
         )}
       </div>
     );

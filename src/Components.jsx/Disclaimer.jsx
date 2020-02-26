@@ -16,7 +16,7 @@ class Disclaimer extends Component {
           <img src={c} alt="nc-news c homepage logo" />
         </div>
         <h2>Disclaimer</h2>
-        <p>
+        <p className="disclaimerText">
           If you require any more information or have any questions about our
           site's disclaimer, please feel free to contact us by email at
           admin@nc-news.com Disclaimers for NC-News All the information on this

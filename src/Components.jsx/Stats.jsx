@@ -4,6 +4,7 @@ import axios from "axios";
 import ArticlesSearchDropdown from "./ArticlesSearchDropdown";
 import loading from "../Images/Loading-Full.gif";
 import { Link } from "@reach/router";
+import Err from "./Err";
 
 class Stats extends Component {
   state = {
@@ -13,68 +14,74 @@ class Stats extends Component {
     topicCount: 0
   };
   render() {
-    return (
-      <div>
-        <Navigation />
-        <h2>Stats</h2>
-        {this.state.articleData.length === 0 ? (
-          <img className="img.loading" src={loading} alt="loading gif"></img>
-        ) : (
-          <>
-            <ul>
-              <li>Topic Count: {this.state.topicCount}</li>
-              <li>Article count: {this.state.articleData.length}</li>
-            </ul>
+    if (this.state.error !== undefined) {
+      return <Err error={this.state.error} />;
+    } else
+      return (
+        <div class="articleStatPage">
+          <Navigation />
+          <h2>Stats</h2>
+          {this.state.articleData.length === 0 ? (
+            <img className="img.loading" src={loading} alt="loading gif"></img>
+          ) : (
+            <div className="statsArticle">
+              <ul>
+                <li>Topic Count: {this.state.topicCount}</li>
+                <li>Article count: {this.state.articleData.length}</li>
+              </ul>
 
-            <p>
-              Most liked article:{" "}
-              <Link
-                to={`/topics/${this.state.topicIdHighest}/${this.state.idHighest}`}
-              >
-                {this.state.titleHighest}
-              </Link>{" "}
-              Author: {this.state.userHighest} Votes: {this.state.votesHighest}
-            </p>
-            <p>
-              Most disliked article:{" "}
-              <Link
-                to={`/topics/${this.state.topicIdLowest}/${this.state.idLowest}`}
-              >
-                {this.state.titleLowest}
-              </Link>
-              , Author: {this.state.userLowest} Votes: {this.state.votesLowest}
-            </p>
-            <h2>All Articles</h2>
-          </>
-        )}
+              <p>
+                Most liked article:{" "}
+                <Link
+                  to={`/topics/${this.state.topicIdHighest}/${this.state.idHighest}`}
+                >
+                  {this.state.titleHighest}
+                </Link>{" "}
+                Author: {this.state.userHighest} Votes:{" "}
+                {this.state.votesHighest}
+              </p>
+              <p>
+                Most disliked article:{" "}
+                <Link
+                  to={`/topics/${this.state.topicIdLowest}/${this.state.idLowest}`}
+                >
+                  {this.state.titleLowest}
+                </Link>
+                , Author: {this.state.userLowest} Votes:{" "}
+                {this.state.votesLowest}
+              </p>
+            </div>
+          )}
+          <h2>All Articles</h2>
+          <ArticlesSearchDropdown
+            getArticleData={this.getArticleData}
+            value={this.state.sortBy}
+          />
 
-        <ArticlesSearchDropdown
-          getArticleData={this.getArticleData}
-          value={this.state.sortBy}
-        />
+          {this.state.articleData.length === 0 && (
+            <img className="img.loading" src={loading} alt="loading gif"></img>
+          )}
 
-        {this.state.articleData.length === 0 && (
-          <img className="img.loading" src={loading} alt="loading gif"></img>
-        )}
-
-        <ol>
-          {this.state.articleData.map(article => {
-            return (
-              <>
-                <li key={article.article_id} className="singleArticle">
-                  <p>
-                    {this.state.sortBy} {article[this.state.sortBy]}
-                  </p>
-                  <p className="singleArticleAuthor">Title: {article.title}.</p>
-                  <br></br>
-                  <p>Author: {article.author}</p>
-                </li>
-              </>
-            );
-          })}
-        </ol>
-      </div>
-    );
+          <ol>
+            {this.state.articleData.map(article => {
+              return (
+                <>
+                  <li key={article.article_id} className="singleArticle">
+                    <p>
+                      {this.state.sortBy} {article[this.state.sortBy]}
+                    </p>
+                    <p className="singleArticleAuthor">
+                      Title: {article.title}.
+                    </p>
+                    <br></br>
+                    <p>Author: {article.author}</p>
+                  </li>
+                </>
+              );
+            })}
+          </ol>
+        </div>
+      );
   }
   componentDidMount() {
     this.getArticleData();

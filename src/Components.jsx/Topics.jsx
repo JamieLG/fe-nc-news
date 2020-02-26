@@ -24,21 +24,23 @@ class Topics extends Component {
           {this.state.allTopicsData.length === 0 && (
             <img className="img.loading" src={loading} alt="loading gif"></img>
           )}
-          <ol>
-            {this.state.allTopicsData.map(topic => {
-              return (
-                <li className="topicsListItem" key={topic.slug}>
-                  Title:{" "}
-                  <Link to={topic.slug} topic={topic.slug}>
-                    <Button variant="contained" color="primary">
-                      {topic.slug}
-                    </Button>
-                  </Link>
-                  . Description: {topic.description}
-                </li>
-              );
-            })}
-          </ol>
+          <div>
+            <ol className="topicsList">
+              {this.state.allTopicsData.map(topic => {
+                return (
+                  <li className="topicsListItem" key={topic.slug}>
+                    Title:{" "}
+                    <Link to={topic.slug} topic={topic.slug}>
+                      <Button variant="contained" color="primary">
+                        {topic.slug}
+                      </Button>
+                    </Link>
+                    . Description: {topic.description}
+                  </li>
+                );
+              })}
+            </ol>
+          </div>
         </div>
       );
   }

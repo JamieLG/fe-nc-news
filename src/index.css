@@ -13,6 +13,7 @@ h1 {
 
 h2 {
   font-size: 40px;
+  margin-left: 15px;
 }
 
 h3 {
@@ -26,6 +27,7 @@ button {
 
 img {
   height: 300px;
+  text-align: center;
 }
 
 div {
@@ -43,6 +45,9 @@ div {
   margin: 20px;
   padding: 20px;
   font-size: 20px;
+  border: solid;
+  border-width: 0.5px;
+  background-color: white;
 }
 
 .navLoggedInAs {
@@ -75,6 +80,14 @@ div {
 
 /* Article */
 
+.articles {
+  background-color: rgb(138, 138, 170);
+  margin: 0px;
+  padding: 0px;
+  border: solid;
+  border-width: 0.5px;
+}
+
 .singleArticle {
   background-color: white;
   padding: 10px;
@@ -87,6 +100,38 @@ div {
 .singleArticleAuthor {
   font-size: 30px;
 }
+
+.singleArticle {
+  margin: 25px;
+  border: solid;
+  border-width: 0.5px;
+}
+
+.individualArticleList {
+  background-color: white;
+  margin: 25px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  border-style: solid;
+  border-width: 0.5px;
+}
+
+.individualArticleComments {
+  margin: 25px;
+  border: solid;
+  border-width: 0.5px;
+}
+
+/* Articles search dropdown */
+
+.searchDropdown {
+  background-color: rgb(138, 138, 170);
+  margin-left: 15px;
+}
+
+.alreadyVotedText {
+  color: red;
+}
 /* Err */
 
 .errorHeader {
@@ -97,6 +142,11 @@ div {
 
 /* Disclaimer */
 
+.disclaimerText {
+  background-color: rgb(138, 138, 170);
+  border: solid;
+  border-width: 0.5px;
+}
 .disagree {
   text-align: center;
   font-size: 50px;
@@ -121,6 +171,10 @@ div {
   text-align: center;
 }
 
+.nc-news-logo {
+  margin-top: 50px;
+}
+
 /* VoteButton */
 
 .voteButtonLike {
@@ -143,15 +197,7 @@ div {
 .commentsSection {
   padding: 30px;
 }
-
-/* Topics */
-
-.topicsListItem {
-  margin-bottom: 20px;
-  margin-left: 20px;
-}
-
-.nc-news-logo {
+.commentListItem {
   margin-top: 50px;
 }
 
@@ -159,6 +205,71 @@ div {
   color: red;
 }
 
-.commentListItem {
-  margin-top: 50px;
+/* Topics */
+
+.topicsListItem {
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+/* .topicsListItem:last-of-type {
+  margin-bottom: 200px;
+  margin-left: 20px;
+} */
+
+.topics {
+  padding-bottom: 50px;
+  background-color: rgb(138, 138, 170);
+  border: solid;
+  border-width: 0.5px;
+}
+
+.topicsList {
+  margin-left: 15px;
+  margin-right: 15px;
+  background-color: white;
+  padding-top: 20px;
+  padding-bottom: 15px;
+  border: solid;
+  border-width: 0.5px;
+}
+
+/* Stats */
+.searchDropdown {
+  border: solid;
+  border-width: 0.5px;
+  background-color: white;
+  margin-right: 20px;
+}
+
+.statsPage {
+  background-color: teal;
+}
+.username {
+  text-align: right;
+  padding-right: 20px;
+}
+
+.statsPage {
+  padding: 0px;
+}
+
+.articleStatPage {
+  background-color: rgb(138, 138, 170);
+  margin: 0px;
+  padding: 0px;
+  border: solid;
+  border-width: 0.5px;
+}
+
+.statsArticle {
+  margin-left: 15px;
+  margin-right: 15px;
+  border: solid;
+  border-width: 0.5px;
+  background-color: white;
+  padding: 10px;
+}
+
+.individualArticleComments {
+  background-color: white;
 }
