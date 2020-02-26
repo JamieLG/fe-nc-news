@@ -3,6 +3,7 @@ import Navigation from "./Navigation";
 import axios from "axios";
 import ArticlesSearchDropdown from "./ArticlesSearchDropdown";
 import loading from "../Images/Loading-Full.gif";
+import { Link } from "@reach/router";
 
 class Stats extends Component {
   state = {
@@ -17,25 +18,33 @@ class Stats extends Component {
         <Navigation />
         <h2>Stats</h2>
         {this.state.articleData.length === 0 ? (
-          <>
-            <p>Loading this page may take a while!</p>
-            <img className="img.loading" src={loading} alt="loading gif"></img>
-          </>
+          <img className="img.loading" src={loading} alt="loading gif"></img>
         ) : (
           <>
             <ul>
-              <li>Article count: {this.state.articleData.length}</li>
               <li>Topic Count: {this.state.topicCount}</li>
+              <li>Article count: {this.state.articleData.length}</li>
             </ul>
+
             <p>
-              Most liked article: {this.state.titleHighest}, Author:{" "}
-              {this.state.userHighest} Votes: {this.state.votesHighest}
+              Most liked article:{" "}
+              <Link
+                to={`/topics/${this.state.topicIdHighest}/${this.state.idHighest}`}
+              >
+                {this.state.titleHighest}
+              </Link>{" "}
+              Author: {this.state.userHighest} Votes: {this.state.votesHighest}
             </p>
             <p>
-              Most disliked article: {this.state.titleLowest}, Author:{" "}
-              {this.state.userLowest} Votes: {this.state.votesLowest}
+              Most disliked article:{" "}
+              <Link
+                to={`/topics/${this.state.topicIdLowest}/${this.state.idLowest}`}
+              >
+                {this.state.titleLowest}
+              </Link>
+              , Author: {this.state.userLowest} Votes: {this.state.votesLowest}
             </p>
-            <h2>All Articles</h2>{" "}
+            <h2>All Articles</h2>
           </>
         )}
 
@@ -91,13 +100,15 @@ class Stats extends Component {
             articleDataObj.votesHighest.votes = article.votes;
             articleDataObj.votesHighest.user = article.author;
             articleDataObj.votesHighest.title = article.title;
-            console.log(article);
+            articleDataObj.votesHighest.id = article.article_id;
+            articleDataObj.votesHighest.topic = article.topic;
           }
           if (article.votes < articleDataObj.votesLowest.votes) {
             articleDataObj.votesLowest.votes = article.votes;
             articleDataObj.votesLowest.user = article.author;
             articleDataObj.votesLowest.title = article.title;
-            console.log(article);
+            articleDataObj.votesLowest.id = article.article_id;
+            articleDataObj.votesLowest.topic = article.topic;
           }
         });
         this.setState({
@@ -107,9 +118,13 @@ class Stats extends Component {
           votesHighest: articleDataObj.votesHighest.votes,
           titleHighest: articleDataObj.votesHighest.title,
           userHighest: articleDataObj.votesHighest.user,
+          idHighest: articleDataObj.votesHighest.id,
+          topicIdHighest: articleDataObj.votesHighest.topic,
           votesLowest: articleDataObj.votesLowest.votes,
           titleLowest: articleDataObj.votesLowest.title,
-          userLowest: articleDataObj.votesLowest.user
+          userLowest: articleDataObj.votesLowest.user,
+          idLowest: articleDataObj.votesLowest.id,
+          topicIdLowest: articleDataObj.votesLowest.topic
         });
       })
       .catch(err => {

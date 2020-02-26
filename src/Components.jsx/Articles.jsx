@@ -21,8 +21,10 @@ class Articles extends Component {
     } else
       return (
         <div className="articles">
+          {console.log(this.props, "propssss")}
           <Navigation />
-          <h2>Articles - {this.props.path.split("/")[2]}</h2>
+          {console.log(this.props.path)}
+          <h2>Articles - {this.props.topic}</h2>
           <ArticlesSearchDropdown
             getArticleData={this.getArticleData}
             value={this.state.sortBy}

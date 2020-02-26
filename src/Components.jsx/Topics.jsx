@@ -4,6 +4,7 @@ import loading from "../Images/Loading-Full.gif";
 import Navigation from "./Navigation";
 import { Link } from "@reach/router";
 import Err from "./Err";
+import Button from "@material-ui/core/Button";
 
 class Topics extends Component {
   state = {
@@ -13,13 +14,13 @@ class Topics extends Component {
   };
   render() {
     if (this.state.error !== undefined) {
-      console.log("should be loading");
       return <Err error={this.state.error} />;
     } else
       return (
         <div className="topics">
           <Navigation />
           <h2>Topics</h2>
+
           {this.state.allTopicsData.length === 0 && (
             <img className="img.loading" src={loading} alt="loading gif"></img>
           )}
@@ -28,8 +29,10 @@ class Topics extends Component {
               return (
                 <li className="topicsListItem" key={topic.slug}>
                   Title:{" "}
-                  <Link to={topic.slug}>
-                    <button>{topic.slug}</button>
+                  <Link to={topic.slug} topic={topic.slug}>
+                    <Button variant="contained" color="primary">
+                      {topic.slug}
+                    </Button>
                   </Link>
                   . Description: {topic.description}
                 </li>

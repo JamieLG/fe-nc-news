@@ -22,6 +22,7 @@ function Navigation(props) {
           Articles/Stats
         </Button>
       </Link>
+      <p className="navLoggedInAs">Logged in as: grumpy19</p>
     </nav>
   );
 }

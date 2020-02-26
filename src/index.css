@@ -45,6 +45,14 @@ div {
   font-size: 20px;
 }
 
+.navLoggedInAs {
+  text-align: right;
+}
+
+.navLinkTypeSplit {
+  margin-top: 10px;
+}
+
 /* Header */
 
 .header {
@@ -114,13 +122,14 @@ div {
 /* Comments */
 .commentsButton {
   width: 200px;
+  margin-left: 4px;
 }
 
-.voteCountDisplay {
+/* .voteCountDisplay {
   text-align: left;
   font-size: 30px;
   margin-left: 20px;
-}
+} */
 
 .commentsSection {
   padding: 30px;
@@ -146,10 +155,6 @@ div {
 
 .nc-news-logo {
   margin-top: 50px;
-}
-
-.navLinkTypeSplit {
-  margin-top: 10px;
 }
 
 .alreadyVotedText {

@@ -2,8 +2,6 @@ import React from "react";
 import Navigation from "./Navigation";
 
 function Err(props) {
-  console.log(props.error.response.data);
-
   return (
     <div>
       <Navigation />
