@@ -94,7 +94,6 @@ class Articles extends Component {
   }
 
   updateSearchParams = (paramType, paramValue) => {
-    console.log("here", paramType, paramValue);
     this.setState({ [paramType]: paramValue });
   };
 
@@ -165,8 +164,6 @@ class Articles extends Component {
     if (prevState.order !== this.state.order) {
       this.getArticleData();
     }
-
-    console.log(prevState);
   }
 }
 

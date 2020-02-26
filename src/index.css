@@ -72,11 +72,16 @@ div {
 /* Header */
 
 .header {
+  display: flex;
   border: solid;
   border-color: black;
   background-color: navy;
   font-size: 40px;
   color: white;
+}
+.usernametwo {
+  margin-left: auto;
+  margin-right: 50px;
 }
 
 .headerHeading {
@@ -219,6 +224,11 @@ div {
 
 .alreadyVotedText {
   color: red;
+}
+
+input {
+  margin-left: 40px;
+  width: 70%;
 }
 
 /* Topics */
