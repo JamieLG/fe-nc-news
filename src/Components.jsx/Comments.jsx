@@ -7,6 +7,7 @@ import Err from "./Err";
 
 class Comments extends Component {
   state = {
+    loading: false,
     error: undefined,
     commentsVotedOn: {},
     commentData: [],
@@ -22,7 +23,7 @@ class Comments extends Component {
           {this.state.commentData.length === 0 && (
             <img src={loading} alt="loading gif"></img>
           )}
-          <ol className="comments.list">
+          <ol className="commentsList">
             {this.state.commentData.map(comment => {
               return (
                 <li key={comment.comment_id} className="commentListItem">
@@ -50,6 +51,7 @@ class Comments extends Component {
                       <VoteButton
                         function={this.commentVote}
                         value={comment.comment_id}
+                        loading={this.state.loading}
                       />
                     )
                   )}
@@ -105,6 +107,17 @@ class Comments extends Component {
   };
 
   commentVote = (changeInVote, commentId) => {
+    console.log("VOTE");
+    this.setState(currentState => {
+      console.log("VOTE");
+      return {
+        commentsVotedOn: {
+          ...currentState.commentsVotedOn,
+          [commentId]: true
+        }
+      };
+    });
+
     axios
       .patch(
         `https://jamie-backendapp.herokuapp.com/api/comments/${commentId}`,
@@ -115,10 +128,6 @@ class Comments extends Component {
       .then(response => {
         this.setState(currentState => {
           return {
-            commentsVotedOn: {
-              ...currentState.commentsVotedOn,
-              [commentId]: true
-            },
             commentData: currentState.commentData.map(comment => {
               if (comment.comment_id === commentId) {
                 return { ...comment, votes: response.data.comment.votes };

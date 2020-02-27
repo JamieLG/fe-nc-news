@@ -33,7 +33,7 @@ class Articles extends Component {
           {this.state.articleData.length === 0 && (
             <img className="img.loading" src={loading} alt="loading gif"></img>
           )}
-          <ol>
+          <ol className="articlesList">
             {this.state.articleData.map(article => {
               return (
                 <li key={article.article_id} className="singleArticle">
