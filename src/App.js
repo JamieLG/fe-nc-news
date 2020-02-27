@@ -29,8 +29,11 @@ class App extends Component {
         <Router>
           <Disclaimer path="/" />
           <Topics path="/topics" />
-          <Articles path="/topics/:topic" />
-          <IndividualArticle path="/topics/:topic/:id" />
+          <Articles path="/topics/:topic" user={this.state.username} />
+          <IndividualArticle
+            path="/topics/:topic/:id"
+            user={this.state.username}
+          />
           <Stats path="/stats" />
           <Err path="/*" />
         </Router>
@@ -59,8 +62,6 @@ class App extends Component {
         `https://jamie-backendapp.herokuapp.com/api/users/${this.state.username}`
       )
       .then(response => {
-        console.log(response.data);
-        console.log(this.setState);
         this.setState({
           avatar_url: response.data.user.avatar_url,
           name: response.data.user.name

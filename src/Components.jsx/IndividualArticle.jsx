@@ -28,7 +28,10 @@ class IndividualArticle extends Component {
         </ul>
         {this.state.individualArticleData.article_id > 0 && (
           <div className="individualArticleComments">
-            <Comments articleId={this.state.individualArticleData.article_id} />
+            <Comments
+              articleId={this.state.individualArticleData.article_id}
+              user={this.state.username}
+            />
           </div>
         )}
       </div>
@@ -40,8 +43,16 @@ class IndividualArticle extends Component {
         `https://jamie-backendapp.herokuapp.com/api/articles/${this.props.id}`
       )
       .then(response => {
-        this.setState({ individualArticleData: response.data.article });
+        this.setState({
+          username: this.props.user,
+          individualArticleData: response.data.article
+        });
       });
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.user !== this.props.user) {
+      this.setState({ username: this.props.user });
+    }
   }
 }
 

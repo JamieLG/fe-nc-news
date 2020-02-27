@@ -76,7 +76,7 @@ div {
   flex-direction: row;
   border: solid;
   border-color: black;
-  background-color: navy;
+  background-color: rgb(83, 83, 209);
   font-size: 40px;
   color: white;
   justify-content: space-between;

@@ -81,6 +81,7 @@ class Comments extends Component {
       )
       .then(response => {
         this.setState({
+          username: this.props.user,
           commentData: response.data.comments,
           id: this.props.articleId
         });
@@ -107,9 +108,7 @@ class Comments extends Component {
   };
 
   commentVote = (changeInVote, commentId) => {
-    console.log("VOTE");
     this.setState(currentState => {
-      console.log("VOTE");
       return {
         commentsVotedOn: {
           ...currentState.commentsVotedOn,
@@ -138,6 +137,12 @@ class Comments extends Component {
         });
       });
   };
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.user !== this.props.user) {
+      this.setState({ username: this.props.user });
+    }
+  }
 }
 
 export default Comments;

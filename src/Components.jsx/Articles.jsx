@@ -73,7 +73,10 @@ class Articles extends Component {
                     )}
                   </div>
                   {article.showComments === true && (
-                    <Comments articleId={article.article_id} />
+                    <Comments
+                      articleId={article.article_id}
+                      user={this.state.username}
+                    />
                   )}
                 </li>
               );
@@ -83,6 +86,7 @@ class Articles extends Component {
       );
   }
   componentDidMount() {
+    this.setState({ username: this.props.user });
     this.getArticleData();
   }
 
@@ -155,11 +159,17 @@ class Articles extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
+    console.log("didupdate");
+    console.log(prevProps);
+    console.log(this.props);
     if (prevState.sort !== this.state.sort) {
       this.getArticleData();
     }
     if (prevState.order !== this.state.order) {
       this.getArticleData();
+    }
+    if (prevProps.user !== this.props.user) {
+      this.setState({ username: this.props.user });
     }
   }
 }
