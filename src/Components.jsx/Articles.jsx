@@ -22,7 +22,6 @@ class Articles extends Component {
     } else
       return (
         <div className="articles">
-          {console.log(this.state.sort, this.state.order)}
           <Navigation />
           <h2>Articles - {this.props.topic} </h2>
           <ArticlesSearchDropdown
@@ -30,59 +29,51 @@ class Articles extends Component {
             valueSort={this.state.sort}
             valueOrder={this.state.order}
           />
-
           {this.state.articleData.length === 0 && (
             <img className="img.loading" src={loading} alt="loading gif"></img>
           )}
           <ol>
             {this.state.articleData.map(article => {
               return (
-                <>
-                  <li key={article.article_id} className="singleArticle">
-                    <p>
-                      {this.state.sort} {article[this.state.sort]}
-                    </p>
-                    <p className="singleArticleAuthor">
-                      Title:
-                      <Link to={article.article_id.toString()}>
-                        {article.title}.
-                      </Link>
-                    </p>
-                    <p>Author: {article.author}</p>
-                    <div className="buttonContainer">
-                      <button
-                        className="commentsButton"
-                        onClick={() => {
-                          this.toggleComments(article.title);
-                        }}
-                      >
-                        {article.showComments
-                          ? "Hide Comments"
-                          : "Show Comments"}
-                      </button>
-
-                      {this.state.articlesVotedOn[article.article_id] ===
-                      true ? (
-                        <p className="alreadyVotedText">
-                          You have already voted!
-                        </p>
-                      ) : (
-                        <VoteButton
-                          function={this.articleVote}
-                          value={article.article_id}
-                        />
-                      )}
-
-                      {this.state.sortBy !== "votes" && (
-                        <p>Votes: {article.votes}</p>
-                      )}
-                    </div>
-                    {article.showComments === true && (
-                      <Comments articleId={article.article_id} />
+                <li key={article.article_id} className="singleArticle">
+                  <p>
+                    {this.state.sort} {article[this.state.sort]}
+                  </p>
+                  <p className="singleArticleAuthor">
+                    Title:
+                    <Link to={article.article_id.toString()}>
+                      {article.title}.
+                    </Link>
+                  </p>
+                  <p>Author: {article.author}</p>
+                  <div className="buttonContainer">
+                    <button
+                      className="commentsButton"
+                      onClick={() => {
+                        this.toggleComments(article.title);
+                      }}
+                    >
+                      {article.showComments ? "Hide Comments" : "Show Comments"}
+                    </button>
+                    {this.state.articlesVotedOn[article.article_id] === true ? (
+                      <p className="alreadyVotedText">
+                        You have already voted!
+                      </p>
+                    ) : (
+                      <VoteButton
+                        function={this.articleVote}
+                        value={article.article_id}
+                      />
                     )}
-                  </li>
-                  <br></br>
-                </>
+
+                    {this.state.sortBy !== "votes" && (
+                      <p>Votes: {article.votes}</p>
+                    )}
+                  </div>
+                  {article.showComments === true && (
+                    <Comments articleId={article.article_id} />
+                  )}
+                </li>
               );
             })}
           </ol>

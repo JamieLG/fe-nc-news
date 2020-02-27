@@ -7,7 +7,7 @@ function Navigation(props) {
     <div>
       <nav className="nav">
         <Link to="/">
-          <Button variant="contained" color="primary" className="testtt">
+          <Button variant="contained" color="primary">
             HomePage
           </Button>
         </Link>

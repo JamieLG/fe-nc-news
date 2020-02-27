@@ -19,7 +19,7 @@ class Stats extends Component {
       return <Err error={this.state.error} />;
     } else
       return (
-        <div class="articleStatPage">
+        <div className="articleStatPage">
           <Navigation />
           <h2>Stats</h2>
           {this.state.articleData.length === 0 ? (
@@ -67,24 +67,20 @@ class Stats extends Component {
           <ol>
             {this.state.articleData.map(article => {
               return (
-                <>
-                  <li key={article.article_id} className="singleArticle">
-                    <p>
-                      {this.state.sort} {article[this.state.sort]}
-                    </p>
-                    <p className="singleArticleAuthor">
-                      Title:{" "}
-                      <Link
-                        to={`/topics/${article.topic}/${article.article_id}`}
-                      >
-                        {" "}
-                        {article.title}.
-                      </Link>
-                    </p>
-                    <br></br>
-                    <p>Author: {article.author}</p>
-                  </li>
-                </>
+                <li key={article.article_id} className="singleArticle">
+                  <p>
+                    {this.state.sort} {article[this.state.sort]}
+                  </p>
+                  <p className="singleArticleAuthor">
+                    Title:{" "}
+                    <Link to={`/topics/${article.topic}/${article.article_id}`}>
+                      {" "}
+                      {article.title}.
+                    </Link>
+                  </p>
+                  <br></br>
+                  <p>Author: {article.author}</p>
+                </li>
               );
             })}
           </ol>

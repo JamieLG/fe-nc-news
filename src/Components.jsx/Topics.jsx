@@ -52,11 +52,9 @@ class Topics extends Component {
     axios
       .get("https://jamie-backendapp.herokuapp.com/api/topics")
       .then(response => {
-        console.log(response.data);
         this.setState({ allTopicsData: response.data.topics });
       })
       .catch(err => {
-        console.log("ERRORORORORORORO", err);
         this.setState({ error: err });
       });
   };

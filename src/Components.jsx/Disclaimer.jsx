@@ -10,7 +10,6 @@ class Disclaimer extends Component {
   render() {
     return (
       <div className="disclaimerImageGroup">
-        ``
         <div className="nc-news-logo">
           <img src={n} alt="nc-news n homepage logo" />
           <img src={c} alt="nc-news c homepage logo" />
@@ -48,7 +47,7 @@ class Disclaimer extends Component {
           </button>
         </div>
         {this.state.disclaimer === "disagree" && (
-          <p className="disagree">YOU MUST AGREE TO ENTER THE SITE</p>
+          <p className="disagree">You must agree to enter the site.</p>
         )}
       </div>
     );
