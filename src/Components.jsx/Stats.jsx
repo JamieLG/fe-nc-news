@@ -22,6 +22,7 @@ class Stats extends Component {
         <div className="articleStatPage">
           <Navigation />
           <h2>Stats</h2>
+          {console.log("here", this.state.statsObj)}
           {this.state.articleData.length === 0 ? (
             <img className="img.loading" src={loading} alt="loading gif"></img>
           ) : (
@@ -34,22 +35,22 @@ class Stats extends Component {
               <p>
                 Most liked article:{" "}
                 <Link
-                  to={`/topics/${this.state.topicIdHighest}/${this.state.idHighest}`}
+                  to={`/topics/${this.state.statsObj.articleHighest.topic}/${this.state.statsObj.articleHighest.article_id}`}
                 >
-                  {this.state.titleHighest}
+                  {this.state.statsObj.articleHighest.title}
                 </Link>{" "}
-                Author: {this.state.userHighest} Votes:{" "}
-                {this.state.votesHighest}
+                Author: {this.state.statsObj.articleHighest.author} Votes:{" "}
+                {this.state.statsObj.articleHighest.votes}
               </p>
               <p>
                 Most disliked article:{" "}
                 <Link
-                  to={`/topics/${this.state.topicIdLowest}/${this.state.idLowest}`}
+                  to={`/topics/${this.state.statsObj.articleLowest.topic}/${this.state.statsObj.articleLowest.article_id}`}
                 >
-                  {this.state.titleLowest}
+                  {this.state.statsObj.articleLowest.title}
                 </Link>
-                , Author: {this.state.userLowest} Votes:{" "}
-                {this.state.votesLowest}
+                , Author: {this.state.statsObj.articleLowest.author} Votes:{" "}
+                {this.state.statsObj.articleLowest.votes}
               </p>
             </div>
           )}
@@ -109,32 +110,17 @@ class Stats extends Component {
           }
           if (article.votes > articleDataObj.votesHighest.votes) {
             articleDataObj.votesHighest.votes = article.votes;
-            articleDataObj.votesHighest.user = article.author;
-            articleDataObj.votesHighest.title = article.title;
-            articleDataObj.votesHighest.id = article.article_id;
-            articleDataObj.votesHighest.topic = article.topic;
+            articleDataObj.articleHighest = article;
           }
           if (article.votes < articleDataObj.votesLowest.votes) {
             articleDataObj.votesLowest.votes = article.votes;
-            articleDataObj.votesLowest.user = article.author;
-            articleDataObj.votesLowest.title = article.title;
-            articleDataObj.votesLowest.id = article.article_id;
-            articleDataObj.votesLowest.topic = article.topic;
+            articleDataObj.articleLowest = article;
           }
         });
         this.setState({
           articleData: response.data.articles,
           topicCount: articleDataObj.total,
-          votesHighest: articleDataObj.votesHighest.votes,
-          titleHighest: articleDataObj.votesHighest.title,
-          userHighest: articleDataObj.votesHighest.user,
-          idHighest: articleDataObj.votesHighest.id,
-          topicIdHighest: articleDataObj.votesHighest.topic,
-          votesLowest: articleDataObj.votesLowest.votes,
-          titleLowest: articleDataObj.votesLowest.title,
-          userLowest: articleDataObj.votesLowest.user,
-          idLowest: articleDataObj.votesLowest.id,
-          topicIdLowest: articleDataObj.votesLowest.topic
+          statsObj: articleDataObj
         });
       })
       .catch(err => {
