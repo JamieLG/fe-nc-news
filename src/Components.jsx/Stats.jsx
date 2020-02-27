@@ -14,7 +14,7 @@ class Stats extends Component {
     sort: "created_at",
     order: "desc",
     topicCount: 0,
-    usersArticlesToShow: "jessjelly"
+    usersArticlesToShow: undefined
   };
   render() {
     if (this.state.error !== undefined) {
@@ -54,19 +54,21 @@ class Stats extends Component {
                 {this.state.statsObj.articleLowest.votes}
               </p>
               <p>Users that have posted the most articles:</p>
-              <ul>
+              <ul className="articleListByUser">
                 {this.state.statsObj.usersPosting.map(user => {
                   return (
                     <li key={user[0]}>
-                      {user[0]} : {user[1]}{" "}
                       <button onClick={() => this.setArticleUser(user[0])}>
                         show
-                      </button>
+                      </button>{" "}
+                      Articles by {user[0]} : Total articles: {user[1]}{" "}
                     </li>
                   );
                 })}
               </ul>
-              <UserArticles user={this.state.usersArticlesToShow} />
+              {this.state.usersArticlesToShow !== undefined && (
+                <UserArticles user={this.state.usersArticlesToShow} />
+              )}
             </div>
           )}
           <h2>All Articles</h2>

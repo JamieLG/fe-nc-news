@@ -17,11 +17,11 @@ class UserArticles extends Component {
         {this.state.userArticles.length === 0 && (
           <img className="img.loading" src={loading} alt="loading gif"></img>
         )}
-        <ol>
+        <ol className="articleListByUser">
           {this.state.userArticles.map(article => {
             return (
               <Link to={`/topics/${article.topic}/${article.article_id}`}>
-                <li>{article.title}</li>
+                <li> {article.title}</li>
               </Link>
             );
           })}

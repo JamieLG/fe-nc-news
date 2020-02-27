@@ -384,3 +384,9 @@ select:hover {
   display: flex;
   flex-direction: column;
 }
+
+.articleListByUser {
+  background-color: rgb(215, 223, 226);
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
