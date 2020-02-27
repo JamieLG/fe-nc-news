@@ -7,7 +7,6 @@ import Topics from "./Components.jsx/Topics";
 import Articles from "./Components.jsx/Articles";
 import IndividualArticle from "./Components.jsx/IndividualArticle";
 import Err from "./Components.jsx/Err";
-import "typeface-roboto";
 import Stats from "./Components.jsx/Stats";
 
 class App extends Component {

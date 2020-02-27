@@ -142,7 +142,6 @@ class Stats extends Component {
       });
   };
   updateSearchParams = (paramType, paramValue) => {
-    console.log("here", paramType, paramValue);
     this.setState({ [paramType]: paramValue });
   };
   componentDidUpdate(prevProps, prevState) {

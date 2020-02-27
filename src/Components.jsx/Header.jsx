@@ -43,7 +43,6 @@ class Header extends Component {
         ) : (
           <div className="logout">
             <p>Username: {this.props.username}</p>
-            {console.log(this.props)}
             <button
               className="logoutButton"
               onClick={() => {

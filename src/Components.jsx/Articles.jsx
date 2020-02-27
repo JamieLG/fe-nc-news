@@ -131,7 +131,6 @@ class Articles extends Component {
       )
       .then(response => {
         this.setState(currentState => {
-          console.log("articleid", articleId);
           return {
             articlesVotedOn: {
               ...currentState.articlesVotedOn,

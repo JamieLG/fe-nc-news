@@ -1,7 +1,7 @@
 /* General */
 
 * {
-  font-family: "Courier New", Courier, monospace;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 20px;
   margin-left: 2px;
   margin-right: 2px;
@@ -126,6 +126,7 @@ div {
   margin-right: 30px;
   display: flex;
   flex-direction: column;
+  margin-bottom: 10px;
 }
 
 .loginform {
@@ -205,8 +206,8 @@ div {
 /* Disclaimer */
 
 .disclaimerText {
-  background-color: rgb(138, 138, 170);
-  border: solid;
+  background-color: rgb(215, 223, 226);
+
   border-width: 0.5px;
 }
 .disagree {

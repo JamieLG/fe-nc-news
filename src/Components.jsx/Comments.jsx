@@ -42,14 +42,17 @@ class Comments extends Component {
                   {this.state.commentsVotedOn[comment.comment_id] === true && (
                     <p className="alreadyVotedText">You have already voted!</p>
                   )}
-                  {this.state.commentsVotedOn[comment.comment_id] !== undefined
-                    ? console.log("test")
-                    : this.state.username !== comment.author && (
-                        <VoteButton
-                          function={this.commentVote}
-                          value={comment.comment_id}
-                        />
-                      )}
+                  {this.state.commentsVotedOn[comment.comment_id] !==
+                  undefined ? (
+                    <></>
+                  ) : (
+                    this.state.username !== comment.author && (
+                      <VoteButton
+                        function={this.commentVote}
+                        value={comment.comment_id}
+                      />
+                    )
+                  )}
                 </li>
               );
             })}
