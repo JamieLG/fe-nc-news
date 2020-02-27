@@ -5,6 +5,7 @@ import ArticlesSearchDropdown from "./ArticlesSearchDropdown";
 import loading from "../Images/Loading-Full.gif";
 import { Link } from "@reach/router";
 import Err from "./Err";
+import UserArticles from "./UserArticles";
 
 class Stats extends Component {
   state = {
@@ -12,7 +13,8 @@ class Stats extends Component {
     articleData: [],
     sort: "created_at",
     order: "desc",
-    topicCount: 0
+    topicCount: 0,
+    usersArticlesToShow: "jessjelly"
   };
   render() {
     if (this.state.error !== undefined) {
@@ -22,7 +24,6 @@ class Stats extends Component {
         <div className="articleStatPage">
           <Navigation />
           <h2>Stats</h2>
-          {console.log("here", this.state.statsObj)}
           {this.state.articleData.length === 0 ? (
             <img className="img.loading" src={loading} alt="loading gif"></img>
           ) : (
@@ -52,6 +53,20 @@ class Stats extends Component {
                 , Author: {this.state.statsObj.articleLowest.author} Votes:{" "}
                 {this.state.statsObj.articleLowest.votes}
               </p>
+              <p>Users that have posted the most articles:</p>
+              <ul>
+                {this.state.statsObj.usersPosting.map(user => {
+                  return (
+                    <li key={user[0]}>
+                      {user[0]} : {user[1]}{" "}
+                      <button onClick={() => this.setArticleUser(user[0])}>
+                        show
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+              <UserArticles user={this.state.usersArticlesToShow} />
             </div>
           )}
           <h2>All Articles</h2>
@@ -92,6 +107,10 @@ class Stats extends Component {
     this.getArticleData();
   }
 
+  setArticleUser = user => {
+    this.setState({ usersArticlesToShow: user });
+  };
+
   getArticleData = () => {
     axios
       .get("https://jamie-backendapp.herokuapp.com/api/articles/", {
@@ -101,7 +120,8 @@ class Stats extends Component {
         let articleDataObj = {
           total: 0,
           votesHighest: { votes: -999 },
-          votesLowest: { votes: 999 }
+          votesLowest: { votes: 999 },
+          usersPosting: {}
         };
         response.data.articles.forEach(article => {
           if (articleDataObj[article.topic] === undefined) {
@@ -116,7 +136,23 @@ class Stats extends Component {
             articleDataObj.votesLowest.votes = article.votes;
             articleDataObj.articleLowest = article;
           }
+          if (articleDataObj.usersPosting[article.author] === undefined) {
+            articleDataObj.usersPosting[article.author] = 1;
+          } else {
+            articleDataObj.usersPosting[article.author]++;
+          }
         });
+        var sortedArticlePosts = [];
+        for (var vehicle in articleDataObj.usersPosting) {
+          sortedArticlePosts.push([
+            vehicle,
+            articleDataObj.usersPosting[vehicle]
+          ]);
+        }
+        sortedArticlePosts.sort(function(a, b) {
+          return b[1] - a[1];
+        });
+        articleDataObj.usersPosting = sortedArticlePosts;
         this.setState({
           articleData: response.data.articles,
           topicCount: articleDataObj.total,

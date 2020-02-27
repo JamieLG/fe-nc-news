@@ -9,6 +9,7 @@ import IndividualArticle from "./Components.jsx/IndividualArticle";
 import Err from "./Components.jsx/Err";
 import Stats from "./Components.jsx/Stats";
 import axios from "axios";
+import UserArticles from "./Components.jsx/UserArticles";
 
 class App extends Component {
   state = {
