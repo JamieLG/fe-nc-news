@@ -41,7 +41,7 @@ class Header extends Component {
             </form>
           </div>
         ) : (
-          <div className="loggedInContainer">
+          <>
             <div className="logout">
               <p>Username: {this.props.username}</p>
               <button
@@ -58,7 +58,7 @@ class Header extends Component {
               src={this.props.avatar}
               alt="user avatar"
             ></img>
-          </div>
+          </>
         )}
       </div>
     );
