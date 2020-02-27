@@ -63,8 +63,8 @@ class Comments extends Component {
           {this.state.id !== undefined && (
             <AddCommentForm
               articleId={this.state.id}
-              postComment={this.postComment}
               addCommentToData={this.addCommentToData}
+              user={this.state.username}
             />
           )}
         </div>

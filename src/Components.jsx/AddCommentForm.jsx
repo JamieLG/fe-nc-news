@@ -33,7 +33,7 @@ class AddCommentForm extends Component {
       .post(
         `https://jamie-backendapp.herokuapp.com/api/articles/${this.props.articleId}/comments`,
         {
-          username: "grumpy19",
+          username: this.props.user,
           body: comment
         }
       )

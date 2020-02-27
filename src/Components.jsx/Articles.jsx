@@ -159,9 +159,6 @@ class Articles extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    console.log("didupdate");
-    console.log(prevProps);
-    console.log(this.props);
     if (prevState.sort !== this.state.sort) {
       this.getArticleData();
     }

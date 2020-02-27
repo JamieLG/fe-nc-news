@@ -29,7 +29,7 @@ class Header extends Component {
               ></input>
               <input
                 className="loginInput"
-                type="text"
+                type="password"
                 name="inputBodyPassword"
                 value={this.state.inputBodyPassword}
                 onChange={this.handleChange}
