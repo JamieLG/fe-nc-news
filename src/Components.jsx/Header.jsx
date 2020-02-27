@@ -55,7 +55,7 @@ class Header extends Component {
             </div>
             <img
               className="avatarImage"
-              src="https://www.tumbit.com/profile-image/4/original/mr-grumpy.jpg"
+              src={this.props.avatar}
               alt="user avatar"
             ></img>
           </div>

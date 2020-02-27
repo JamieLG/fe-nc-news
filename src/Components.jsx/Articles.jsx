@@ -10,6 +10,7 @@ import Err from "./Err";
 
 class Articles extends Component {
   state = {
+    loading: false,
     error: undefined,
     articlesVotedOn: {},
     articleData: [],
@@ -63,6 +64,7 @@ class Articles extends Component {
                       <VoteButton
                         function={this.articleVote}
                         value={article.article_id}
+                        loading={this.state.loading}
                       />
                     )}
 
@@ -122,6 +124,15 @@ class Articles extends Component {
   }
 
   articleVote = (changeInVote, articleId) => {
+    this.setState(currentState => {
+      return {
+        articlesVotedOn: {
+          ...currentState.articlesVotedOn,
+          [articleId]: true
+        }
+      };
+    });
+
     axios
       .patch(
         `https://jamie-backendapp.herokuapp.com/api/articles/${articleId}`,
@@ -132,10 +143,6 @@ class Articles extends Component {
       .then(response => {
         this.setState(currentState => {
           return {
-            articlesVotedOn: {
-              ...currentState.articlesVotedOn,
-              [articleId]: true
-            },
             articleData: currentState.articleData.map(article => {
               if (article.article_id === articleId) {
                 return { ...article, votes: response.data.article.votes };

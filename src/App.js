@@ -14,7 +14,7 @@ class App extends Component {
   state = {
     loggedIn: true,
     username: "grumpy19",
-    avatar_url: "",
+    avatar_url: "https://www.tumbit.com/profile-image/4/original/mr-grumpy.jpg",
     name: ""
   };
   render() {
@@ -24,6 +24,7 @@ class App extends Component {
           username={this.state.username}
           changeUsername={this.changeUsername}
           loggedIn={this.state.loggedIn}
+          avatar={this.state.avatar_url}
         />
         <Router>
           <Disclaimer path="/" />
@@ -59,11 +60,10 @@ class App extends Component {
       )
       .then(response => {
         console.log(response.data);
+        console.log(this.setState);
         this.setState({
           avatar_url: response.data.user.avatar_url,
           name: response.data.user.name
-        }).catch(err => {
-          this.setState({ error: err });
         });
       });
   };
