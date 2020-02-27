@@ -134,6 +134,18 @@ div {
   padding: 0px;
 }
 
+.loggedInContainer {
+  display: flex;
+  flex-direction: row;
+  margin-right: 0px;
+  padding-right: 0px;
+}
+
+.avatarImage {
+  height: 60%;
+  margin-top: 10px;
+}
+
 /* Article */
 
 .articles {
@@ -277,6 +289,9 @@ input {
   width: 70%;
 }
 
+.addCommentSubmit {
+  margin-left: 40px;
+}
 /* Topics */
 
 .topicsListItem {

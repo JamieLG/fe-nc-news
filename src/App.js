@@ -8,11 +8,14 @@ import Articles from "./Components.jsx/Articles";
 import IndividualArticle from "./Components.jsx/IndividualArticle";
 import Err from "./Components.jsx/Err";
 import Stats from "./Components.jsx/Stats";
+import axios from "axios";
 
 class App extends Component {
   state = {
     loggedIn: true,
-    username: "grumpy19"
+    username: "grumpy19",
+    avatar_url: "",
+    name: ""
   };
   render() {
     return (
@@ -35,6 +38,34 @@ class App extends Component {
   }
   changeUsername = (loggedIn, newUsername) => {
     this.setState({ username: newUsername, loggedIn: loggedIn });
+  };
+  componentDidMount() {
+    // this.getUserData()
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevState.username !== this.state.username &&
+      this.state.loggedIn === true
+    ) {
+      this.getUserData();
+    }
+  }
+
+  getUserData = () => {
+    axios
+      .get(
+        `https://jamie-backendapp.herokuapp.com/api/users/${this.state.username}`
+      )
+      .then(response => {
+        console.log(response.data);
+        this.setState({
+          avatar_url: response.data.user.avatar_url,
+          name: response.data.user.name
+        }).catch(err => {
+          this.setState({ error: err });
+        });
+      });
   };
 }
 export default App;

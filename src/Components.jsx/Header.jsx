@@ -41,16 +41,23 @@ class Header extends Component {
             </form>
           </div>
         ) : (
-          <div className="logout">
-            <p>Username: {this.props.username}</p>
-            <button
-              className="logoutButton"
-              onClick={() => {
-                this.props.changeUsername(false, "");
-              }}
-            >
-              LogOut
-            </button>
+          <div className="loggedInContainer">
+            <div className="logout">
+              <p>Username: {this.props.username}</p>
+              <button
+                className="logoutButton"
+                onClick={() => {
+                  this.props.changeUsername(false, "");
+                }}
+              >
+                LogOut
+              </button>
+            </div>
+            <img
+              className="avatarImage"
+              src="https://www.tumbit.com/profile-image/4/original/mr-grumpy.jpg"
+              alt="user avatar"
+            ></img>
           </div>
         )}
       </div>

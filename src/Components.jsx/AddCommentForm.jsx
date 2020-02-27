@@ -17,7 +17,9 @@ class AddCommentForm extends Component {
           required
         ></input>
 
-        <button type="submit">Add Comment</button>
+        <button className="addCommentSubmit" type="submit">
+          Add Comment
+        </button>
       </form>
     );
   }
