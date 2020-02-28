@@ -23,7 +23,7 @@ class Articles extends Component {
     } else
       return (
         <div className="articles">
-          {this.props.dontShowNav === true && (
+          {this.props.dontShowNav === undefined && (
             <>
               <Navigation />
               <h2>Articles - {this.props.topic} </h2>

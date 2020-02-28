@@ -3,7 +3,7 @@ import Navigation from "./Navigation";
 import loading from "../Images/Loading-Full.gif";
 import axios from "axios";
 import Comments from "./Comments";
-import Error from "./Err";
+import Err from "./Err";
 
 class IndividualArticle extends Component {
   state = {
@@ -15,7 +15,7 @@ class IndividualArticle extends Component {
 
   render() {
     if (this.state.error !== undefined) {
-      return <Error error={this.state.error} />;
+      return <Err error={this.state.error} />;
     } else
       return (
         <div className="articles">
@@ -59,6 +59,7 @@ class IndividualArticle extends Component {
         });
       })
       .catch(err => {
+        console.log(this.state.error);
         this.setState({ error: err });
       });
   }
