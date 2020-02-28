@@ -35,7 +35,7 @@ class App extends Component {
             path="/topics/:topic/:id"
             user={this.state.username}
           />
-          <Stats path="/stats" />
+          <Stats path="/stats" user={this.state.username} />
           <Err path="/*" />
         </Router>
       </div>

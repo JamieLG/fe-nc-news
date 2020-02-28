@@ -23,8 +23,12 @@ class Articles extends Component {
     } else
       return (
         <div className="articles">
-          <Navigation />
-          <h2>Articles - {this.props.topic} </h2>
+          {this.props.dontShowNav === true && (
+            <>
+              <Navigation />
+              <h2>Articles - {this.props.topic} </h2>
+            </>
+          )}
           <ArticlesSearchDropdown
             updateSearchParams={this.updateSearchParams}
             valueSort={this.state.sort}
@@ -42,7 +46,12 @@ class Articles extends Component {
                   </p>
                   <p className="singleArticleAuthor">
                     Title:
-                    <Link to={article.article_id.toString()}>
+                    {console.log(article)}
+                    <Link
+                      to={`/topics/${
+                        article.topic
+                      }/${article.article_id.toString()}`}
+                    >
                       {article.title}.
                     </Link>
                   </p>
@@ -95,14 +104,17 @@ class Articles extends Component {
   };
 
   getArticleData = () => {
-    let topicId = this.props.uri.split("/")[2];
+    let paramsObj = {
+      sort_by: this.state.sort,
+      order: this.state.order
+    };
+    if (this.props.uri) {
+      let topicId = this.props.uri.split("/")[2];
+      paramsObj.topic = topicId;
+    }
     axios
       .get("https://jamie-backendapp.herokuapp.com/api/articles", {
-        params: {
-          topic: topicId,
-          sort_by: this.state.sort,
-          order: this.state.order
-        }
+        paramsObj
       })
       .then(response => {
         this.setState({ articleData: response.data.articles });

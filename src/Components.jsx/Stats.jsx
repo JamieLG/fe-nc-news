@@ -6,6 +6,7 @@ import loading from "../Images/Loading-Full.gif";
 import { Link } from "@reach/router";
 import Err from "./Err";
 import UserArticles from "./UserArticles";
+import Articles from "./Articles";
 
 class Stats extends Component {
   state = {
@@ -75,36 +76,7 @@ class Stats extends Component {
             </div>
           )}
           <h2>All Articles</h2>
-          <ArticlesSearchDropdown
-            updateSearchParams={this.updateSearchParams}
-            valueSort={this.state.sort}
-            valueOrder={this.state.order}
-          />
-
-          {this.state.articleData.length === 0 && (
-            <img className="img.loading" src={loading} alt="loading gif"></img>
-          )}
-
-          <ol>
-            {this.state.articleData.map(article => {
-              return (
-                <li key={article.article_id} className="singleArticle">
-                  <p>
-                    {this.state.sort} {article[this.state.sort]}
-                  </p>
-                  <p className="singleArticleAuthor">
-                    Title:{" "}
-                    <Link to={`/topics/${article.topic}/${article.article_id}`}>
-                      {" "}
-                      {article.title}.
-                    </Link>
-                  </p>
-                  <br></br>
-                  <p>Author: {article.author}</p>
-                </li>
-              );
-            })}
-          </ol>
+          <Articles dontShowNav="true" />
         </div>
       );
   }
