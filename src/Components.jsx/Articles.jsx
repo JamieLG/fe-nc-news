@@ -46,7 +46,6 @@ class Articles extends Component {
                   </p>
                   <p className="singleArticleAuthor">
                     Title:
-                    {console.log(article)}
                     <Link
                       to={`/topics/${
                         article.topic
@@ -100,6 +99,7 @@ class Articles extends Component {
   }
 
   updateSearchParams = (paramType, paramValue) => {
+    console.log(paramType, paramValue);
     this.setState({ [paramType]: paramValue });
   };
 
@@ -108,22 +108,40 @@ class Articles extends Component {
       sort_by: this.state.sort,
       order: this.state.order
     };
-    if (this.props.uri) {
+    console.log(this.props.uri, "uri");
+    if (this.props.uri !== undefined) {
       let topicId = this.props.uri.split("/")[2];
-      paramsObj.topic = topicId;
+      axios
+        .get("https://jamie-backendapp.herokuapp.com/api/articles", {
+          params: {
+            topic: topicId,
+            sort_by: this.state.sort,
+            order: this.state.order
+          }
+        })
+        .then(response => {
+          this.setState({ articleData: response.data.articles });
+        })
+        .catch(err => {
+          this.setState({ error: err });
+        });
     }
-    axios
-      .get("https://jamie-backendapp.herokuapp.com/api/articles", {
-        paramsObj
-      })
-      .then(response => {
-        this.setState({ articleData: response.data.articles });
-      })
-      .catch(err => {
-        this.setState({ error: err });
-      });
+    if (this.props.uri === undefined) {
+      axios
+        .get("https://jamie-backendapp.herokuapp.com/api/articles", {
+          params: {
+            sort_by: this.state.sort,
+            order: this.state.order
+          }
+        })
+        .then(response => {
+          this.setState({ articleData: response.data.articles });
+        })
+        .catch(err => {
+          this.setState({ error: err });
+        });
+    }
   };
-
   toggleComments(articleTitle) {
     let newArticleData = this.state.articleData.map(article => {
       if (article.title === articleTitle) {
@@ -171,10 +189,12 @@ class Articles extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
+    console.log("here", prevState.order, this.state.order);
     if (prevState.sort !== this.state.sort) {
       this.getArticleData();
     }
     if (prevState.order !== this.state.order) {
+      console.log("gettingart");
       this.getArticleData();
     }
     if (prevProps.user !== this.props.user) {

@@ -59,7 +59,6 @@ class IndividualArticle extends Component {
         });
       })
       .catch(err => {
-        console.log(this.state.error);
         this.setState({ error: err });
       });
   }
