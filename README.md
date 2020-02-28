@@ -4,6 +4,8 @@ A website (https://frosty-raman-bc528a.netlify.com/stats) that gets data from ht
 
 LOCAL USE SETUP
 
+Requires Node v13.7 or above.
+
 Install the required dependencies (axios, @reach/router)
 
 ```bash
