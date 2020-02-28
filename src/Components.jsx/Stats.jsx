@@ -54,20 +54,23 @@ class Stats extends Component {
                 {this.state.statsObj.articleLowest.votes}
               </p>
               <p>Users that have posted the most articles:</p>
-              <ul className="articleListByUser">
+              <p className="articleListByUser">
                 {this.state.statsObj.usersPosting.map(user => {
                   return (
-                    <li key={user[0]}>
+                    <p className="articlesByUserList" key={user[0]}>
                       <button onClick={() => this.setArticleUser(user[0])}>
                         show
                       </button>{" "}
                       Articles by {user[0]} : Total articles: {user[1]}{" "}
-                    </li>
+                    </p>
                   );
                 })}
-              </ul>
+              </p>
               {this.state.usersArticlesToShow !== undefined && (
-                <UserArticles user={this.state.usersArticlesToShow} />
+                <UserArticles
+                  user={this.state.usersArticlesToShow}
+                  hideArticles={this.hideArticles}
+                />
               )}
             </div>
           )}
@@ -176,6 +179,10 @@ class Stats extends Component {
       this.getArticleData();
     }
   }
+
+  hideArticles = () => {
+    this.setState({ usersArticlesToShow: undefined });
+  };
 }
 
 export default Stats;

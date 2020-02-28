@@ -390,3 +390,7 @@ select:hover {
   padding-top: 15px;
   padding-bottom: 15px;
 }
+
+.articlesByUserList {
+  padding-left: 10px;
+}

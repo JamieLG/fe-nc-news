@@ -13,7 +13,10 @@ class UserArticles extends Component {
   render() {
     return (
       <div className="userArticles">
-        <h3>Articles from {this.props.user} </h3>
+        <h3>
+          Articles from {this.props.user}{" "}
+          <button onClick={this.props.hideArticles}>Hide</button>
+        </h3>
         {this.state.userArticles.length === 0 && (
           <img className="img.loading" src={loading} alt="loading gif"></img>
         )}
