@@ -99,7 +99,6 @@ class Articles extends Component {
   }
 
   updateSearchParams = (paramType, paramValue) => {
-    console.log(paramType, paramValue);
     this.setState({ [paramType]: paramValue });
   };
 
@@ -108,7 +107,6 @@ class Articles extends Component {
       sort_by: this.state.sort,
       order: this.state.order
     };
-    console.log(this.props.uri, "uri");
     if (this.props.uri !== undefined) {
       let topicId = this.props.uri.split("/")[2];
       axios
@@ -189,12 +187,10 @@ class Articles extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    console.log("here", prevState.order, this.state.order);
     if (prevState.sort !== this.state.sort) {
       this.getArticleData();
     }
     if (prevState.order !== this.state.order) {
-      console.log("gettingart");
       this.getArticleData();
     }
     if (prevProps.user !== this.props.user) {

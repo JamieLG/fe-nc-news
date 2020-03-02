@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./App.css";
 import Header from "./Components.jsx/Header";
 import Disclaimer from "./Components.jsx/Disclaimer";
 import { Router } from "@reach/router";

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Navigation from "./Navigation";
 import axios from "axios";
-import ArticlesSearchDropdown from "./ArticlesSearchDropdown";
 import loading from "../Images/Loading-Full.gif";
 import { Link } from "@reach/router";
 import Err from "./Err";

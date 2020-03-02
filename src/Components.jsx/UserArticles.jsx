@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import loading from "../Images/Loading-Full.gif";
-import Err from "./Err";
-import Navigation from "./Navigation";
 import axios from "axios";
 import { Link } from "@reach/router";
 
