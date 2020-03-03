@@ -118,8 +118,8 @@ class Stats extends Component {
             articleDataObj.usersPosting[article.author]++;
           }
         });
-        var sortedArticlePosts = [];
-        for (var vehicle in articleDataObj.usersPosting) {
+        let sortedArticlePosts = [];
+        for (let vehicle in articleDataObj.usersPosting) {
           sortedArticlePosts.push([
             vehicle,
             articleDataObj.usersPosting[vehicle]
