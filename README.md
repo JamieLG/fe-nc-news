@@ -1,6 +1,6 @@
 NC-News (FRONTEND) - REACT WEBSITE
 
-A website (https://frosty-raman-bc528a.netlify.com/stats) that gets data from https://jamie-backendapp.herokuapp.com/api to display Topics, Articles and Comments. It allows voting on comments that weren't created by the logged in user, and the ability to post and delete comments to articles. Articles can be arranged several ways and the website displays on both a monitor and a smaller phone display.
+A website (https://newsfe.netlify.com/) that gets data from https://jamie-backendapp.herokuapp.com/api to display Topics, Articles and Comments. It allows voting on comments that weren't created by the logged in user, and the ability to post and delete comments to articles. Articles can be arranged several ways and the website displays on both a monitor and a smaller phone display.
 
 LOCAL USE SETUP
 
@@ -40,8 +40,8 @@ FUNCTIONALITY
 
 LINKS:
 
-Live Website: https://frosty-raman-bc528a.netlify.com/stats
-Frontend github repo: https://github.com/JamieLG/nc-news
+Live Website: https://newsfe.netlify.com/
+Frontend github repo: https://github.com/JamieLG/fe-nc-news
 Backend github repo: https://github.com/JamieLG/be-nc-news
 
 CONTRIBUTING
