@@ -29,13 +29,12 @@ class Topics extends Component {
               {this.state.allTopicsData.map(topic => {
                 return (
                   <li className="topicsListItem" key={topic.slug}>
-                    Title:{" "}
                     <Link to={topic.slug} topic={topic.slug}>
                       <Button variant="contained" color="primary">
                         {topic.slug}
                       </Button>
                     </Link>
-                    . Description: {topic.description}
+                    {topic.description}
                   </li>
                 );
               })}
