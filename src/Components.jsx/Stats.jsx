@@ -6,6 +6,7 @@ import { Link } from "@reach/router";
 import Err from "./Err";
 import UserArticles from "./UserArticles";
 import Articles from "./Articles";
+import eye from "../Images/eye.png";
 
 class Stats extends Component {
   state = {
@@ -57,12 +58,16 @@ class Stats extends Component {
               <p className="articleListByUser">
                 {this.state.statsObj.usersPosting.map(user => {
                   return (
-                    <p className="articlesByUserList" key={user[0]}>
-                      <button onClick={() => this.setArticleUser(user[0])}>
-                        show
-                      </button>{" "}
-                      Articles by {user[0]} : Total articles: {user[1]}{" "}
-                    </p>
+                    <div>
+                      <p key={user[0]}>
+                        <img
+                          className="eyeIcon"
+                          src={eye}
+                          onClick={() => this.setArticleUser(user[0])}
+                        ></img>{" "}
+                        Articles by {user[0]} : Total articles: {user[1]}{" "}
+                      </p>
+                    </div>
                   );
                 })}
               </p>

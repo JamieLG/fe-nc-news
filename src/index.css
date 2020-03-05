@@ -1,7 +1,7 @@
 /* General */
 
 * {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Trade Winds", cursive;
   font-size: 10px;
   margin-left: 2px;
   margin-right: 2px;
@@ -88,7 +88,7 @@ div {
 }
 
 .headerHeading {
-  margin-left: 30px;
+  margin-left: 20px;
 }
 
 .loginInput {
@@ -200,6 +200,7 @@ div {
   display: flex;
   flex-direction: row;
   background-color: rgb(138, 138, 170);
+  color: rgb(138, 138, 170);
   padding: 10px;
   margin: 10px;
   margin-left: 20px;
@@ -397,4 +398,8 @@ select:hover {
 
 .articlesByUserList {
   padding-left: 10px;
+}
+
+.eyeIcon {
+  width: 10px;
 }
